@@ -39,7 +39,7 @@
         v-else
         class="bottom-container, bottom-container__text"
       >
-        Спасибо, мы свяжемся с вами по почте <b>{{ mail }}</b>
+        Спасибо, мы свяжемся с вами в Telegram или по почте <b>{{ mail }}</b>
       </div>
     </div>
   </div>
