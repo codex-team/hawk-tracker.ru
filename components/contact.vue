@@ -1,13 +1,15 @@
 <template>
   <div :class="['box', inputActive && 'box__active']">
     <div class="contact">
-      <div :class="[`div-${$props.titleSize}`, `div`, inputActive && 'div__active']">{{ $props.title }}</div>
+      <div :class="[`div-${$props.titleSize}`, `div`, inputActive && 'div__active']">
+        {{ $props.title }}
+      </div>
       <p :class="['team-hawk-so-t-me', inputActive && 'team-hawk-so-t-me__active']">
         Чтобы начать сотрудничество или получить больше информации, напишите нам на
         <a href="mailto:team@hawk.so"> team@hawk.so</a>
         или в телеграм
-        <a href="https://t.me/+xWe73YEfIVRlNmYy">t.me/hawk⁠-⁠support</a>.
-        <br />
+        <a href="https://t.me/hawk_tracker">t.me/hawk_tracker</a>.
+        <br>
         <span class="text-wrapper">
           Либо оставьте почту:
         </span>
@@ -16,23 +18,27 @@
         v-if="mail === '' || mail === undefined"
         class="bottom-container"
         @submit.prevent="notify(inputData)"
-        >
+      >
         <div class="frame">
           <input
             required
             :value="inputData"
             :class="['input-style', inputActive && 'input-style-active']"
-            @input="inputData = $event.target.value"
             type="email"
-            placeholder="dev@yourproduct.ru" />
+            placeholder="dev@yourproduct.ru"
+            @input="inputData = $event.target.value"
+          >
         </div>
         <button class="div-wrapper">
-          <div class="text-wrapper-3">Получить информацию</div>
+          <div class="text-wrapper-3">
+            Получить информацию
+          </div>
         </button>
       </form>
-      <div v-else
+      <div
+        v-else
         class="bottom-container, bottom-container__text"
-        >
+      >
         Спасибо, мы свяжемся с вами по почте <b>{{ mail }}</b>
       </div>
     </div>
@@ -56,13 +62,13 @@ export default Vue.extend({
     },
     mail: {
       type: String,
-      required: true
+      required: true,
     },
   },
   data() {
     return {
       inputData: this.mail,
-    }
+    };
   },
   watch: {
     mail(newMail) {
@@ -70,23 +76,22 @@ export default Vue.extend({
     },
   },
   methods: {
-    notify: function(message: string): void {
+    notify(message: string): void {
       fetch('https://notify.bot.codex.so/u/U8S04KRK5R51', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: new URLSearchParams({
-          'message': message
+          message,
+        }),
+      })
+        .then((_) => {
+          this.$emit('update:mail', this.inputData);
         })
-      })
-      .then(_ => {
-        this.$emit('update:mail', this.inputData);
-      })
-      .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:', error));
     },
   },
-
 
 });
 </script>
