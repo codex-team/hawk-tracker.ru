@@ -1,6 +1,6 @@
 <template>
   <div class="yard">
-   <div class="landing">
+    <div class="landing">
       <illustration class="landing__illustration" />
       <div class="landing__content">
         <div class="landing__content-head">
@@ -10,14 +10,20 @@
             </h1>
 
             <div class="description">
-              Хоук улучшает качество продукта.<br/>
-              Он отлавливает ошибки в ПО и помогает их устранить.<br/>
-              Локализованная версия позволяет не зависеть от зарубежных сервисов.<br/>
+              Хоук улучшает качество продукта.<br>
+              Он отлавливает ошибки в ПО и помогает их устранить.<br>
+              Локализованная версия позволяет не зависеть от зарубежных сервисов.<br>
             </div>
             <div class="landing__content-head-left-advantages">
-              <h2 class="landing__content-head-left-advantages-text">Сервера в России</h2>
-              <h2 class="landing__content-head-left-advantages-text">Оплата по счету юр. лица</h2>
-              <h2 class="landing__content-head-left-advantages-text">Помощь с интеграцией</h2>
+              <h2 class="landing__content-head-left-advantages-text">
+                Сервера в России
+              </h2>
+              <h2 class="landing__content-head-left-advantages-text">
+                Оплата по счету юр. лица
+              </h2>
+              <h2 class="landing__content-head-left-advantages-text">
+                Помощь с интеграцией
+              </h2>
             </div>
           </div>
         </div>
@@ -28,11 +34,12 @@
       <div class="contact-container">
         <Contact
           :mail="mail"
-          @update:mail="updateMail"
           title="Свяжитесь с нами"
-          titleSize="small"
+          title-size="small"
           style="margin-top: 115px;
-                padding: 0 30px;"/>
+                padding: 0 30px;"
+          @update:mail="updateMail"
+        />
       </div>
     </div>
     <div class="section section--with-gradient">
@@ -44,17 +51,29 @@
       </div>
     </div>
     <div class="content-blocks">
-      <gridInfo/>
-        <div class="contact-container, contact-container__backgrounded">
-          <Contact
-            inputActive
-            title="Подключайтесь"
-            titleSize="medium"
-            :mail="mail"
-            @update:mail="updateMail"/>
+      <gridInfo />
+      <div class="contact-container, contact-container__backgrounded">
+        <Contact
+          input-active
+          title="Подключайтесь"
+          title-size="medium"
+          :mail="mail"
+          @update:mail="updateMail"
+        />
+      </div>
+
+      <div class="how-to-start">
+        <h3>Начните сейчас</h3>
+        <div class="how-to-start__text">
+          <a href="https://garage.hawk.so/" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
+        </div>
+        <div class="how-to-start__link">
+          Начало работы с Хоуком
+          <a href="https://codex.so/hawk-getting-started" target="_blank">https://codex.so/hawk-getting-started</a>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -75,66 +94,66 @@ export default Vue.extend({
     gridInfo,
   },
   jsonld() {
-    return [{
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Хоук — российский трекер ошибок",
-      "description": "Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом",
-      "image": "https://hawk-tracker.ru/hawk-ru-og-image.png",
-      "url": "https://hawk-tracker.ru",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Хоук",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://hawk-tracker.ru/hawk-ru-og-image.png"
-        }
-      },
-      "creator": {
-        "@type": "Organization",
-        "name": "CodeX",
-        "description": "Команда open-source разработчиков",
-        "url": "https://codex.so",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://codex.so/public/app/img/codex-logo.svg"
+    return [ {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'Хоук — российский трекер ошибок',
+      description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+      image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+      url: 'https://hawk-tracker.ru',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Хоук',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
         },
-        "sameAs": [
-          "http://twitter.com/codex_team"
-        ]
-      }
+      },
+      creator: {
+        '@type': 'Organization',
+        name: 'CodeX',
+        description: 'Команда open-source разработчиков',
+        url: 'https://codex.so',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://codex.so/public/app/img/codex-logo.svg',
+        },
+        sameAs: [
+          'http://twitter.com/codex_team',
+        ],
+      },
     },
     {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Хоук — российский трекер ошибок",
-      "description": "Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом",
-      "image": "https://hawk-tracker.ru/hawk-ru-og-image.png",
-      "brand": {
-        "@type": "Brand",
-        "name": "Хоук"
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: 'Хоук — российский трекер ошибок',
+      description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+      image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+      brand: {
+        '@type': 'Brand',
+        name: 'Хоук',
       },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://hawk-tracker.ru",
-        "priceCurrency": "RUB",
-        "price": "0",  // Adjust this value to the actual price
-        "availability": "https://schema.org/InStock"
+      offers: {
+        '@type': 'Offer',
+        url: 'https://hawk-tracker.ru',
+        priceCurrency: 'RUB',
+        price: '0', // Adjust this value to the actual price
+        availability: 'https://schema.org/InStock',
       },
-      "creator": {
-        "@type": "Organization",
-        "name": "CodeX",
-        "description": "Команда open-source разработчиков",
-        "url": "https://codex.so",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://codex.so/public/app/img/codex-logo.svg"
+      creator: {
+        '@type': 'Organization',
+        name: 'CodeX',
+        description: 'Команда open-source разработчиков',
+        url: 'https://codex.so',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://codex.so/public/app/img/codex-logo.svg',
         },
-        "sameAs": [
-          "http://twitter.com/codex_team"
-        ]
-      }
-    }]
+        sameAs: [
+          'http://twitter.com/codex_team',
+        ],
+      },
+    } ];
   },
   data(): {
     /**
@@ -212,6 +231,75 @@ export default Vue.extend({
       mail: '',
     };
   },
+  head() {
+    return {
+      title: 'Хоук — российский трекер ошибок',
+      link: [
+        {
+          rel: 'canonical',
+          href: 'https://hawk-tracker.ru',
+          id: 'canonical',
+        },
+      ],
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: 'Хоук — российский трекер ошибок',
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: 'https://hawk-tracker.ru',
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'website',
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: 'Хоук — российский трекер ошибок',
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+        },
+        {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: 'https://hawk-tracker.ru',
+        },
+      ],
+    };
+  },
   mounted() {
     window.addEventListener('scroll', () => {
       this.scroll = window.scrollY;
@@ -266,75 +354,6 @@ export default Vue.extend({
       }
     },
   },
-  head() {
-    return {
-      title: "Хоук — российский трекер ошибок",
-      link: [
-        {
-          rel: 'canonical',
-          href: 'https://hawk-tracker.ru',
-          id: 'canonical'
-        },
-      ],
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом'
-        },
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          content: 'Хоук — российский трекер ошибок'
-        },
-        {
-          hid: 'og:description',
-          name: 'og:description',
-          content: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом'
-        },
-        {
-          hid: 'og:image',
-          name: 'og:image',
-          content: 'https://hawk-tracker.ru/hawk-ru-og-image.png'
-        },
-        {
-          hid: 'og:url',
-          name: 'og:url',
-          content: 'https://hawk-tracker.ru'
-        },
-        {
-          hid: 'og:type',
-          name: 'og:type',
-          content: 'website'
-        },
-        {
-          hid: 'twitter:card',
-          name: 'twitter:card',
-          content: 'summary_large_image'
-        },
-        {
-          hid: 'twitter:title',
-          name: 'twitter:title',
-          content: 'Хоук — российский трекер ошибок'
-        },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом'
-        },
-        {
-          hid: 'twitter:image',
-          name: 'twitter:image',
-          content: 'https://hawk-tracker.ru/hawk-ru-og-image.png'
-        },
-        {
-          hid: 'twitter:url',
-          name: 'twitter:url',
-          content: 'https://hawk-tracker.ru'
-        },
-      ],
-    }
-  }
 });
 </script>
 
@@ -629,6 +648,50 @@ export default Vue.extend({
     @media (--screen-mobile) {
       font-size: 26px;
       margin-bottom: 10px;
+    }
+  }
+}
+
+.how-to-start {
+  margin-top: 120px;
+  color: #929AAD;
+  text-align: center;
+
+  h3 {
+    font-size: 26px;
+    line-height: 22px;;
+    font-weight: 700;
+    color: #F2F6FF;
+  }
+
+  &__text {
+    margin-top: 26px;
+    font-size: 14px;
+    line-height: 1.45em;
+
+    a {
+      border-bottom: 1px solid rgba(187, 192, 255, 0.2);
+    }
+  }
+
+  &__link {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 15px 20px;
+    text-align: left;
+    gap: 2px;
+    color: #A9B7D7;
+    background: #15171F;
+    border: 1px solid rgba(187, 192, 255, 0.08);
+    border-radius: 14px;
+    margin: 26px auto 0;
+
+    a {
+      color: #5584F5;
+      text-decoration: none;
     }
   }
 }

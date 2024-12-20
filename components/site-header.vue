@@ -18,17 +18,11 @@
           src="~/assets/images/hawk-logo.png"
           alt="Hawk.so logo"
         >
-        Hawk
+        Хоук
       </a>
       <div class="site-header__menu">
         <a href="https://docs.hawk.so/">Документация</a>
         <a href="https://codex.so/hawk-overview">О проекте</a>
-        <div
-          class="site-header__menu__local-version"
-        >
-          <img src="~/assets/svg/locale-version.svg" class="site-header__menu__local-version-svg"/>
-          <div class="text-container">Локализованная версия</div>
-        </div>
       </div>
       <a
         href="https://github.com/codex-team/hawk.mono"
@@ -36,7 +30,7 @@
       >
         <img
           src="~/assets/svg/ru/github.svg"
-        />
+        >
       </a>
     </div>
   </div>

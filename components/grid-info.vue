@@ -3,71 +3,86 @@
     <div class="grid">
       <div class="block">
         <div class="grid__block">
-          <h2 class="title">Open Source</h2>
-          <div class="text">Исходный код открыт<br/>для исследования и обсуждения</div>
+          <h2 class="title">
+            Open Source
+          </h2>
+          <div class="text">
+            Исходный код открыт<br>для исследования и обсуждения
+          </div>
         </div>
         <div class="grid__block">
-          <div class="title">100 000 000</div>
-          <div class="text">Событий обрабатывается<br>каждый день</div>
+          <div class="title">
+            100 000 000
+          </div>
+          <div class="text">
+            Событий обрабатывается<br>каждый день
+          </div>
         </div>
       </div>
       <div class="grid__block">
-        <h2 class="title">Проверено продуктами</h2>
-        <div class="text">Hawk используется рядом хорошо известных продуктов.<br>И еще большим количеством менее известных.</div>
+        <h2 class="title">
+          Проверено продуктами
+        </h2>
+        <div class="text">
+          Hawk используется рядом хорошо известных продуктов.<br>И еще большим количеством менее известных.
+        </div>
         <div class="products">
-          <VcIcon class="svg, products__box1"/>
-          <DtfIcon class="svg, products__box2"/>
-          <EditorIcon class="svg, products__box3"/>
-          <HeykaIcon class="svg, products__box4"/>
-          <TjIcon class="svg, products__box5"/>
+          <VcIcon class="svg, products__box1" />
+          <DtfIcon class="svg, products__box2" />
+          <EditorIcon class="svg, products__box3" />
+          <HeykaIcon class="svg, products__box4" />
+          <TjIcon class="svg, products__box5" />
         </div>
       </div>
     </div>
     <div class="grid__block">
       <div class="stack">
         <div class="cell">
-          <img src='~/assets/svg/ru/vue.svg' class="svg"/>
+          <img src="~/assets/svg/ru/vue.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/vite.svg' class="svg"/>
+          <img src="~/assets/svg/ru/vite.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/webpack.svg' class="svg"/>
+          <img src="~/assets/svg/ru/webpack.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/js.svg' class="svg"/>
+          <img src="~/assets/svg/ru/js.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/node.svg' class="svg"/>
+          <img src="~/assets/svg/ru/node.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/kotlin.svg' class="svg"/>
+          <img src="~/assets/svg/ru/kotlin.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/python.svg' class="svg"/>
+          <img src="~/assets/svg/ru/python.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/go.svg' class="svg"/>
+          <img src="~/assets/svg/ru/go.svg" class="svg">
         </div>
         <div class="cell">
-          <img src='~/assets/svg/ru/php.svg' class="svg"/>
+          <img src="~/assets/svg/ru/php.svg" class="svg">
         </div>
       </div>
-      <h2 class="title">Поддерживает <br/>ваши технологии</h2>
-      <div class="text">Хоук имеет интеграции с популярными<br/>технологиями и фреймворками. </div>
+      <h2 class="title">
+        Поддерживает <br>ваши технологии
+      </h2>
+      <div class="text">
+        Хоук имеет <a href="https://docs.hawk.so/integrations">интеграции</a> с популярными<br>технологиями и фреймворками.
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import VcIcon from '~/assets/svg/ru/vc.svg?inline';
 import DtfIcon from '~/assets/svg/ru/dtf.svg?inline';
 import EditorIcon from '~/assets/svg/ru/editorjs.svg?inline';
 import HeykaIcon from '~/assets/svg/ru/heyka.svg?inline';
 import TjIcon from '~/assets/svg/ru/notex.svg?inline';
 
-
-import Vue from 'vue';
 export default Vue.extend({
   components: {
     VcIcon,
@@ -79,9 +94,9 @@ export default Vue.extend({
   data() {
     return {
       svgUrls: [
-      ]
+      ],
     };
-  }
+  },
 });
 </script>
 
@@ -106,6 +121,10 @@ export default Vue.extend({
 
     @media(--screen-mobile) {
       padding: 20px 30px;
+    }
+
+    a {
+      text-decoration: underline;
     }
   }
 }
