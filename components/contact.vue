@@ -11,7 +11,7 @@
         <a href="https://t.me/hawk_tracker">t.me/hawk_tracker</a>.
         <br>
         <span class="text-wrapper">
-          Либо оставьте почту:
+          Либо оставьте телеграм или имейл:
         </span>
       </p>
       <form
@@ -24,8 +24,8 @@
             required
             :value="inputData"
             :class="['input-style', inputActive && 'input-style-active']"
-            type="email"
-            placeholder="dev@yourproduct.ru"
+            type="text"
+            placeholder="Telegram или email"
             @input="inputData = $event.target.value"
           >
         </div>
