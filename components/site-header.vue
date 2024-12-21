@@ -21,8 +21,9 @@
         Хоук
       </a>
       <div class="site-header__menu">
-        <a href="https://docs.hawk.so/">Документация</a>
         <a href="https://codex.so/hawk-overview">О проекте</a>
+        <a href="https://docs.hawk.so/">Документация</a>
+        <a href="/pricing.pdf" target="_blank">Цены</a>
       </div>
       <a
         href="https://github.com/codex-team/hawk.mono"
