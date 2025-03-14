@@ -65,7 +65,7 @@
       <div class="how-to-start">
         <h3>Начните сейчас</h3>
         <div class="how-to-start__text">
-          <a href="https://garage.hawk.so/" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
+          <a href="https://garage.hawk.so/sign-up" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
         </div>
         <div class="how-to-start__link">
           Начало работы с Хоуком
