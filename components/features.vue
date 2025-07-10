@@ -26,8 +26,8 @@
           >
         </div>
         <component
-          v-else-if="feature.pictureComponent"
           :is="feature.pictureComponent"
+          v-else-if="feature.pictureComponent"
         />
       </div>
     </div>
@@ -85,6 +85,7 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss" scoped>
+@import url('@/assets/styles/variables.pcss');
 
 .features {
   &__item {

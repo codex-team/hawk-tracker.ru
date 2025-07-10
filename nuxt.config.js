@@ -38,7 +38,7 @@ export default {
       },
       {
         name: 'apple-mobile-web-app-title',
-        content: 'hawk-tracker.ru'
+        content: 'hawk-tracker.ru',
       },
       {
         name: 'apple-mobile-web-app-status-bar-style',
@@ -84,7 +84,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    '~/plugins/jsonld'
+    '~/plugins/jsonld',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -99,7 +99,7 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    '@nuxtjs/yandex-metrika'
+    '@nuxtjs/yandex-metrika',
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -111,7 +111,6 @@ export default {
         'postcss-import': {},
 
         'postcss-preset-env': {
-          importFrom: './assets/styles/variables.pcss',
         },
 
         // /**
@@ -144,11 +143,6 @@ export default {
         // Instruct all plugins to omit pre-polyfilled CSS
         // https://github.com/csstools/postcss-preset-env#preserve
         preserve: true,
-        features: {
-          // Modify colors using the color-mod() function in CSS
-          // https://github.com/jonathantneal/postcss-color-mod-function
-          'color-mod-function': {},
-        },
       },
     },
   },

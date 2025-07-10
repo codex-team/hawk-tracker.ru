@@ -64,6 +64,8 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss">
+@import url('@/assets/styles/variables.pcss');
+
   .site-header {
     height: 50px;
     background: var(--color-bg-header);

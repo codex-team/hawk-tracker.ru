@@ -86,81 +86,80 @@
 <script lang="ts">
 import Vue from 'vue';
 import Illustration from '~/assets/svg/flying-hawk.svg?inline';
-import IconSignIn from '~/assets/svg/sign-in.svg?inline';
-import IconDownload from '~/assets/svg/download.svg?inline';
 import Contact from '~/components/contact.vue';
 import gridInfo from '~/components/grid-info.vue';
-import Features, { Feature } from '~/components/features.vue';
+import { Feature } from '~/components/features.vue';
 
 export default Vue.extend({
   components: {
     Illustration,
-    IconSignIn,
-    IconDownload,
     Contact,
     gridInfo,
   },
   jsonld() {
-    return [ {
+    return {
       '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: 'Хоук — российский трекер ошибок',
-      description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
-      image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
-      url: 'https://hawk-tracker.ru',
-      publisher: {
-        '@type': 'Organization',
-        name: 'Хоук',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+      '@graph': [
+        {
+          '@type': 'WebPage',
+          name: 'Хоук — российский трекер ошибок',
+          description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+          image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+          url: 'https://hawk-tracker.ru',
+          publisher: {
+            '@type': 'Organization',
+            name: 'Хоук',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+            },
+          },
+          creator: {
+            '@type': 'Organization',
+            name: 'CodeX',
+            description: 'Команда open-source разработчиков',
+            url: 'https://codex.so',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://codex.so/public/app/img/codex-logo.svg',
+            },
+            sameAs: [
+              'http://twitter.com/codex_team',
+            ],
+          },
         },
-      },
-      creator: {
-        '@type': 'Organization',
-        name: 'CodeX',
-        description: 'Команда open-source разработчиков',
-        url: 'https://codex.so',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://codex.so/public/app/img/codex-logo.svg',
+        {
+          '@type': 'Product',
+          name: 'Хоук — российский трекер ошибок',
+          description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+          image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+          brand: {
+            '@type': 'Brand',
+            name: 'Хоук',
+          },
+          offers: {
+            '@type': 'Offer',
+            url: 'https://hawk-tracker.ru',
+            priceCurrency: 'RUB',
+            price: '0', // Adjust this value to the actual price
+            availability: 'https://schema.org/InStock',
+          },
+          creator: {
+            '@type': 'Organization',
+            name: 'CodeX',
+            description: 'Команда open-source разработчиков',
+            url: 'https://codex.so',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://codex.so/public/app/img/codex-logo.svg',
+            },
+            sameAs: [
+              'http://twitter.com/codex_team',
+            ],
+          },
         },
-        sameAs: [
-          'http://twitter.com/codex_team',
-        ],
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: 'Хоук — российский трекер ошибок',
-      description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
-      image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
-      brand: {
-        '@type': 'Brand',
-        name: 'Хоук',
-      },
-      offers: {
-        '@type': 'Offer',
-        url: 'https://hawk-tracker.ru',
-        priceCurrency: 'RUB',
-        price: '0', // Adjust this value to the actual price
-        availability: 'https://schema.org/InStock',
-      },
-      creator: {
-        '@type': 'Organization',
-        name: 'CodeX',
-        description: 'Команда open-source разработчиков',
-        url: 'https://codex.so',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://codex.so/public/app/img/codex-logo.svg',
-        },
-        sameAs: [
-          'http://twitter.com/codex_team',
-        ],
-      },
-    } ];
+      ],
+    };
   },
   data(): {
     /**
