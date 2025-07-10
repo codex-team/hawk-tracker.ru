@@ -26,12 +26,11 @@
         <a href="/pricing.pdf" target="_blank">Цены</a>
       </div>
       <a
-        href="https://github.com/codex-team/hawk.mono"
+        href="https://garage.hawk.so/sign-up?from=landing-header"
         class="site-header__menu-logo"
       >
-        <img
-          src="~/assets/svg/ru/github.svg"
-        >
+        <IconSignIn />
+        Начать
       </a>
     </div>
   </div>
@@ -65,6 +64,8 @@ export default Vue.extend({
 </script>
 
 <style lang="postcss">
+@import url('@/assets/styles/variables.pcss');
+
   .site-header {
     height: 50px;
     background: var(--color-bg-header);
@@ -184,6 +185,42 @@ export default Vue.extend({
 
     &__menu-logo {
       margin-left: auto;
+
+      display: flex;
+      align-items: center;
+      padding: 7px 14px;
+      background: linear-gradient(135deg, #5584F5 0%, #3761E0 100%);
+      border-radius: 15px;
+      color: #FFFFFF !important;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(85, 132, 245, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+      border: 1px solid rgb(21, 56, 127);
+      position: relative;
+
+      /* Hover effects */
+      &:hover {
+        box-shadow: 0 6px 20px rgba(85, 132, 245, 0.4);
+        background: linear-gradient(135deg, #4A7BE8 0%, #2F5CD9 100%);
+      }
+
+      /* Active state */
+      &:active {
+        box-shadow: 0 2px 8px rgba(85, 132, 245, 0.3);
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+        margin-right: 7px;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover svg {
+        transform: scale(1.1);
+      }
 
       @media (--screen-mobile) {
         display: none;

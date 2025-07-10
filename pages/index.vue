@@ -25,6 +25,9 @@
                 Помощь с интеграцией
               </h2>
             </div>
+            <a href="https://garage.hawk.so/sign-up?from=landing-top" class="landing__content-head-button">
+              Зарегистрироваться
+            </a>
           </div>
         </div>
         <div class="landing__content-preview" :style="`transform: translateY(${Math.max(0, 150 - scroll * 0.35)}px)`">
@@ -65,13 +68,17 @@
       <div class="how-to-start">
         <h3>Начните сейчас</h3>
         <div class="how-to-start__text">
-          <a href="https://garage.hawk.so/sign-up" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
+          <a href="https://garage.hawk.so/sign-up?from=landing-text" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
         </div>
         <div class="how-to-start__link">
           Начало работы с Хоуком
           <a href="https://codex.so/hawk-getting-started" target="_blank">https://codex.so/hawk-getting-started</a>
         </div>
       </div>
+
+      <a style="margin: 25px auto" href="https://garage.hawk.so/sign-up?from=landing-bottom" class="landing__content-head-button">
+        Зарегистрироваться
+      </a>
     </div>
   </div>
 </template>
@@ -79,81 +86,80 @@
 <script lang="ts">
 import Vue from 'vue';
 import Illustration from '~/assets/svg/flying-hawk.svg?inline';
-import IconSignIn from '~/assets/svg/sign-in.svg?inline';
-import IconDownload from '~/assets/svg/download.svg?inline';
 import Contact from '~/components/contact.vue';
 import gridInfo from '~/components/grid-info.vue';
-import Features, { Feature } from '~/components/features.vue';
+import { Feature } from '~/components/features.vue';
 
 export default Vue.extend({
   components: {
     Illustration,
-    IconSignIn,
-    IconDownload,
     Contact,
     gridInfo,
   },
   jsonld() {
-    return [ {
+    return {
       '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: 'Хоук — российский трекер ошибок',
-      description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
-      image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
-      url: 'https://hawk-tracker.ru',
-      publisher: {
-        '@type': 'Organization',
-        name: 'Хоук',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+      '@graph': [
+        {
+          '@type': 'WebPage',
+          name: 'Хоук — российский трекер ошибок',
+          description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+          image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+          url: 'https://hawk-tracker.ru',
+          publisher: {
+            '@type': 'Organization',
+            name: 'Хоук',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+            },
+          },
+          creator: {
+            '@type': 'Organization',
+            name: 'CodeX',
+            description: 'Команда open-source разработчиков',
+            url: 'https://codex.so',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://codex.so/public/app/img/codex-logo.svg',
+            },
+            sameAs: [
+              'http://twitter.com/codex_team',
+            ],
+          },
         },
-      },
-      creator: {
-        '@type': 'Organization',
-        name: 'CodeX',
-        description: 'Команда open-source разработчиков',
-        url: 'https://codex.so',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://codex.so/public/app/img/codex-logo.svg',
+        {
+          '@type': 'Product',
+          name: 'Хоук — российский трекер ошибок',
+          description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
+          image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
+          brand: {
+            '@type': 'Brand',
+            name: 'Хоук',
+          },
+          offers: {
+            '@type': 'Offer',
+            url: 'https://hawk-tracker.ru',
+            priceCurrency: 'RUB',
+            price: '0', // Adjust this value to the actual price
+            availability: 'https://schema.org/InStock',
+          },
+          creator: {
+            '@type': 'Organization',
+            name: 'CodeX',
+            description: 'Команда open-source разработчиков',
+            url: 'https://codex.so',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://codex.so/public/app/img/codex-logo.svg',
+            },
+            sameAs: [
+              'http://twitter.com/codex_team',
+            ],
+          },
         },
-        sameAs: [
-          'http://twitter.com/codex_team',
-        ],
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: 'Хоук — российский трекер ошибок',
-      description: 'Мониторинг ошибок в ПО с серверами в России и открытым исходным кодом',
-      image: 'https://hawk-tracker.ru/hawk-ru-og-image.png',
-      brand: {
-        '@type': 'Brand',
-        name: 'Хоук',
-      },
-      offers: {
-        '@type': 'Offer',
-        url: 'https://hawk-tracker.ru',
-        priceCurrency: 'RUB',
-        price: '0', // Adjust this value to the actual price
-        availability: 'https://schema.org/InStock',
-      },
-      creator: {
-        '@type': 'Organization',
-        name: 'CodeX',
-        description: 'Команда open-source разработчиков',
-        url: 'https://codex.so',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://codex.so/public/app/img/codex-logo.svg',
-        },
-        sameAs: [
-          'http://twitter.com/codex_team',
-        ],
-      },
-    } ];
+      ],
+    };
   },
   data(): {
     /**
@@ -390,7 +396,7 @@ export default Vue.extend({
     flex-shrink: 0;
 
     &-head {
-      margin: 120px auto 50px;
+      margin: 120px auto 0px;
       padding: 0 var(--layout-paddings-horisontal);
       justify-content: center;
       display: flex;
@@ -489,6 +495,30 @@ export default Vue.extend({
             font-size: 14px;
             line-height: 22px;
           }
+        }
+      }
+
+      &-button {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 40px;
+        display: inline-flex;
+        padding: 14px 20px;
+        background-image: linear-gradient(90deg, #5584F5 0%, #3761E0 100%);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 7px;
+        box-shadow: 0 12px 44px 0 rgba(0,0,0,0.10), inset 0 0 0 1px rgba(255,255,255,0.06);
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+
+        @media (--screen-mobile) {
+          margin-top: 20px;
+          font-size: 16px;
+          padding: 12px 18px;
         }
       }
 
