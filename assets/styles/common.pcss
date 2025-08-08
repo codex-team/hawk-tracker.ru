@@ -5,7 +5,8 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 20px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -24,9 +25,6 @@ html {
 }
 
 .block-inner-container {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
   width: 100%;
   max-width: var(--layout-block-inner-container-width);
   margin: 0 auto;
@@ -41,4 +39,10 @@ html {
 
 .svg-icon {
   fill: currentColor;
+}
+
+.link-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
 }

@@ -5,7 +5,7 @@
       'site-header--menu-showed': mobileMenuShowed
     }"
   >
-    <div class="block-inner-container">
+    <div class="block-inner-container site-header__inner">
       <span class="site-header__menu-toggler" @click="toggleMobileMenu">
         Menu
       </span>
@@ -104,14 +104,6 @@ export default Vue.extend({
       display: flex;
       align-items: center;
       flex-shrink: 0;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 var(--layout-paddings-horisontal);
-
-      @media (--screen-mobile) {
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
 
     &__logo {
