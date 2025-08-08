@@ -56,6 +56,7 @@ export default Vue.extend({
 
   &__content {
     max-width: 100%;
+    width: 100%;
   }
 }
 </style>

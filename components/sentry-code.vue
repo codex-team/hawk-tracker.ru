@@ -17,7 +17,8 @@ Sentry.<span class="sentry-code__method">init</span>({
 @import url('@/assets/styles/variables.pcss');
 
 .sentry-code-container {
-  max-width: 100%;
+  max-width: fit-content;
+  margin: 0 auto;
   background: var(--color-bg-secondary);
   padding: 20px;
   border-radius: 14px;

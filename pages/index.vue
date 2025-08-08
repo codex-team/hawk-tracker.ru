@@ -1,39 +1,39 @@
 <template>
   <div class="landing">
     <!-- <div class="landing__head">
-        <div class="landing__head-content">
-          <h1 class="landing__head-title">
-            Мониторинг ошибок в ПО
-          </h1>
-          <div class="landing__head-subtitle">
-            с серверами в России и открытым исходным кодом
-          </div>
-          <div class="landing__head-buttons">
-            <Button
-              type="primary"
-              size="medium"
-              link="https://garage.hawk.so/sign-up?from=landing-top"
-            >
-              Начать улучшать ПО
-            </Button>
-            <Button
-              type="secondary"
-              size="medium"
-              link="https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c?from=landing-top"
-            >
-              Посмотреть демо
-            </Button>
-          </div>
+      <div class="landing__head-content">
+        <h1 class="landing__head-title">
+          Мониторинг ошибок в ПО
+        </h1>
+        <div class="landing__head-subtitle">
+          с серверами в России и открытым исходным кодом
         </div>
-        <div class="landing__head-picture-container">
-          <img
-            class="landing__head-picture"
-            src="~/assets/images/project-overview.png"
-            title="Хоук — российский трекер ошибок"
-            alt="Изображение интерфейса Хоук"
+        <div class="landing__head-buttons">
+          <Button
+            type="primary"
+            size="medium"
+            link="https://garage.hawk.so/sign-up?from=landing-top"
           >
+            Начать улучшать ПО
+          </Button>
+          <Button
+            type="secondary"
+            size="medium"
+            link="https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c?from=landing-top"
+          >
+            Посмотреть демо
+          </Button>
         </div>
-      </div> -->
+      </div>
+      <div class="landing__head-picture-container">
+        <img
+          class="landing__head-picture"
+          src="~/assets/images/project-overview.png"
+          title="Хоук — российский трекер ошибок"
+          alt="Изображение интерфейса Хоук"
+        >
+      </div>
+    </div> -->
 
     <!-- <transition name="fade">
         <Contact
@@ -43,6 +43,23 @@
           @close="isContactUsFormShown = false;"
         />
       </transition> -->
+
+    <LandingSection>
+      <template #icon>
+        <div class="integrations-title-picture">
+          <img src="~/assets/images/check-integrations.png" alt="Хоук на замену Sentry">
+        </div>
+      </template>
+      <template #title>
+        Множество интеграций
+      </template>
+      <template #description>
+        Подключение за 5 минут
+      </template>
+      <template #content>
+        <Integrations />
+      </template>
+    </LandingSection>
 
     <LandingSection>
       <template #icon>
@@ -491,6 +508,27 @@ export default Vue.extend({
 
 .sentry-to-hawk-picture {
   height: 43px;
+}
+
+.integrations-title-picture {
+  position: relative;
+
+  img {
+    height: 43px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(140, 101, 216, 0.34), transparent);
+    width: 120px;
+    height: 120px;
+    z-index: -1;
+    opacity: 0.9;
+  }
 }
 
 .used-by {
