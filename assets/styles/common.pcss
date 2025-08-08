@@ -46,3 +46,17 @@ html {
   align-items: center;
   gap: 7px;
 }
+
+.desktop-only {
+  @media (max-width: 850px) {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  display: none !important;
+
+  @media (max-width: 850px) {
+    display: block !important;
+  }
+}

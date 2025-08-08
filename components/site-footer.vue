@@ -207,10 +207,21 @@ export default Vue.extend({
 .footer {
   color: var(--color-text-third);
 
+  --menu-section-title-gap: 20px;
+  --menu-direction: row;
+  --menu-links-gap: 10px;
+
+  @media (--screen-mobile) {
+    --menu-section-title-gap: 10px;
+    --menu-direction: column;
+    --menu-links-gap: 4px;
+  }
+
   &-menu {
     display: flex;
     gap: 20px;
     justify-content: space-between;
+    flex-direction: var(--menu-direction);
 
     &-section {
       &-title {
@@ -219,13 +230,13 @@ export default Vue.extend({
         font-style: normal;
         font-weight: 600;
         line-height: 22px;
-        margin-bottom: 20px;
+        margin-bottom: var(--menu-section-title-gap);
       }
 
       &-links {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: var(--menu-links-gap);
       }
 
       &-link {
@@ -249,25 +260,45 @@ export default Vue.extend({
   }
 
   &-island {
+    --padding: 10px 20px;
+    --direction: row;
+    --title-font-size: 15px;
+    --logo-bottom-gap: 0;
+    --sections-gap: 18px;
+
+    @media (--screen-mobile) {
+      --padding: 20px;
+      --direction: column;
+      --title-font-size: 22px;
+      --logo-gap: 20px;
+      --sections-gap: 10px;
+    }
+
     display: flex;
     margin: 50px 0 20px;
     border-radius: 14px;
-    padding: 10px 20px;
+    padding: var(--padding);
     gap: 20px;
     background: var(--color-bg-secondary);
     justify-content: space-between;
+    flex-direction: var(--direction);
 
     &__left,
     &__right {
       display: flex;
-      gap: 18px;
+      gap: var(--sections-gap);
+    }
+
+    &__left {
+      flex-direction: var(--direction);
     }
 
     &__logo {
       color: var(--color-text-main);
-      font-size: 15px;
+      font-size: var(--title-font-size);
       font-weight: bold;
       line-height: 22px;
+      margin-bottom: var(--logo-bottom-gap);
     }
 
     a {

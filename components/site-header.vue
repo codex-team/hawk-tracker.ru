@@ -6,10 +6,6 @@
     }"
   >
     <div class="block-inner-container site-header__inner">
-      <span class="site-header__menu-toggler" @click="toggleMobileMenu">
-        Menu
-      </span>
-
       <a
         class="site-header__logo"
         href="/"
@@ -27,15 +23,18 @@
           <a href="/pricing.pdf" target="_blank">Цены</a>
         </div>
         <div class="site-header__menu-separator" />
+        <span class="site-header__menu-toggler" @click="toggleMobileMenu">
+          Menu
+        </span>
         <a
           href="https://garage.hawk.so/sign-up?from=landing-header"
-          class="site-header__menu-logo"
+          class="site-header__menu-logo desktop-only"
         >
           <IconSignIn />
           Начать
         </a>
-        <div class="site-header__menu-separator" />
-        <div class="site-header__menu-social">
+        <div class="site-header__menu-separator desktop-only" />
+        <div class="site-header__menu-social desktop-only">
           <a href="https://github.com/codex-team?q=hawk&type=all&language=&sort=">
             <IconGitHub alt="GitHub logo" />
           </a>
@@ -90,10 +89,9 @@ export default Vue.extend({
     align-items: center;
     flex-shrink: 0;
     border-bottom: 1px solid var(--color-separator);
-
-    @media (--screen-mobile) {
-      height: auto;
-    }
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
 
     a {
       color: inherit;
@@ -149,7 +147,15 @@ export default Vue.extend({
       ^&--menu-showed & {
         @media (--screen-mobile) {
           display: block;
-          padding-bottom: 12px;
+          position: fixed;
+          top: var(--layout-header-height);
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--color-bg-main);
+          z-index: var(--z-header);
+          padding: 20px;
+          font-size: 20px;
         }
       }
 
@@ -168,15 +174,12 @@ export default Vue.extend({
 
       &-toggler {
         display: none;
-
-        position: absolute;
-        right: 10px;
-        height: calc(24px + 15px * 2);
-        align-items: center;
         padding: 10px;
 
         @media (--screen-mobile) {
           display: flex;
+          -webkit-tap-highlight-color: transparent;
+          user-select: none;
         }
       }
 
