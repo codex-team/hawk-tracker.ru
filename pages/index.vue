@@ -35,16 +35,15 @@
           >
         </div>
       </div>
-      <div class="contact-container">
+
+      <transition name="fade">
         <Contact
+          v-show="isContactUsFormShown"
           :mail="mail"
-          title="Свяжитесь с нами"
-          title-size="small"
-          style="margin-top: 115px;
-                padding: 0 30px;"
           @update:mail="updateMail"
+          @close="isContactUsFormShown = false;"
         />
-      </div>
+      </transition>
     </div>
     <div class="section section--with-gradient">
       <div class="section__content">
@@ -56,15 +55,6 @@
     </div>
     <div class="content-blocks">
       <gridInfo />
-      <div class="contact-container, contact-container__backgrounded">
-        <Contact
-          input-active
-          title="Подключайтесь"
-          title-size="medium"
-          :mail="mail"
-          @update:mail="updateMail"
-        />
-      </div>
 
       <div class="how-to-start">
         <h3>Начните сейчас</h3>
@@ -161,6 +151,12 @@ export default Vue.extend({
     features: Feature[],
 
     /**
+     * Contact us form appears after few seconds
+     * and can be closed by user
+     */
+    isContactUsFormShown: boolean,
+
+    /**
      * Scroll Y position
      */
     scroll: number,
@@ -209,6 +205,12 @@ export default Vue.extend({
           pictureComponent: 'features-be-notified',
         },
       ],
+
+      /**
+       * Contact us form appears after few seconds
+       * and can be closed by user
+       */
+      isContactUsFormShown: false,
 
       /**
        * Scroll Y position
@@ -305,6 +307,10 @@ export default Vue.extend({
     }, { passive: true });
 
     this.updateDownloadButtomWithPlatform();
+
+    setTimeout(() => {
+      this.isContactUsFormShown = true;
+    }, 2500);
   },
   methods: {
     /**
@@ -459,18 +465,6 @@ export default Vue.extend({
   }
 }
 
-.contact-container {
-  width: 100%;
-  height: fit-content;
-
-  &__backgrounded {
-    border-radius: 8px;
-    margin-top: 16px;
-    padding: 40px 30px;
-    background-color: #242936;
-  }
-}
-
 .content-blocks {
   padding: 30px 40px;
   display: inline-grid;
@@ -588,5 +582,15 @@ export default Vue.extend({
       text-decoration: none;
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

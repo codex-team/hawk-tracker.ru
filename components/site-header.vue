@@ -49,16 +49,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import IconSignIn from '~/assets/svg/sign-in.svg?inline';
-import IconGitHub from '~/components/icons/IconGitHub.vue';
-import IconTelegram from '~/components/icons/IconTelegram.vue';
 
 export default Vue.extend({
-  components: {
-    IconSignIn,
-    IconGitHub,
-    IconTelegram,
-  },
   data() {
     return {
       /**

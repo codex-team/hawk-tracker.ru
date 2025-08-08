@@ -1,46 +1,54 @@
 <template>
-  <div :class="['box', inputActive && 'box__active']">
-    <div class="contact">
-      <div :class="[`div-${$props.titleSize}`, `div`, inputActive && 'div__active']">
-        {{ $props.title }}
-      </div>
-      <p :class="['team-hawk-so-t-me', inputActive && 'team-hawk-so-t-me__active']">
-        Чтобы начать сотрудничество или получить больше информации, напишите нам на
+  <div class="contact-us desktop-only">
+    <div class="contact-us__title">
+      Есть вопросы?
+
+      <span
+        class="contact-us__close"
+        @click="$emit('close')"
+      >
+        <IconCross />
+      </span>
+    </div>
+    <div class="contact-us__content">
+      <p>
+        Напишите нам на
         <a href="mailto:team@hawk.so"> team@hawk.so</a>
-        или в телеграм
-        <a href="https://t.me/hawk_tracker">t.me/hawk_tracker</a>.
-        <br>
-        <span class="text-wrapper">
-          Либо оставьте телеграм или имейл:
-        </span>
+        или в Telegram
+        <a href="https://t.me/hawk_tracker">@hawk_tracker</a>.
       </p>
-      <form
-        v-if="mail === '' || mail === undefined"
-        class="bottom-container"
-        @submit.prevent="notify(inputData)"
-      >
-        <div class="frame">
-          <input
-            required
-            :value="inputData"
-            :class="['input-style', inputActive && 'input-style-active']"
-            type="text"
-            placeholder="Telegram или email"
-            @input="inputData = $event.target.value"
-          >
-        </div>
-        <button class="div-wrapper">
-          <div class="text-wrapper-3">
-            Получить информацию
-          </div>
-        </button>
-      </form>
-      <div
-        v-else
-        class="bottom-container, bottom-container__text"
-      >
-        Спасибо, мы свяжемся с вами в Telegram или по почте <b>{{ mail }}</b>
+      <p>
+        Либо оставьте свой контакт и мы с вами свяжемся:
+      </p>
+    </div>
+    <form
+      v-if="mail === '' || mail === undefined"
+      class="bottom-container"
+      @submit.prevent="notify(inputData)"
+    >
+      <div class="frame">
+        <input
+          required
+          class="contact-us__input"
+          :value="inputData"
+          type="text"
+          placeholder="Telegram никнейм или email"
+          @input="inputData = $event.target.value"
+        >
       </div>
+      <Button
+        type="primary"
+        size="medium"
+        @click="notify(inputData)"
+      >
+        Получить информацию
+      </Button>
+    </form>
+    <div
+      v-else
+      class="bottom-container, bottom-container__text"
+    >
+      Спасибо, мы свяжемся с вами в Telegram или по почте <b>{{ mail }}</b>
     </div>
   </div>
 </template>
@@ -51,14 +59,8 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'Contact',
   props: {
-    title: {
-      type: String,
-    },
     inputActive: {
       type: Boolean,
-    },
-    titleSize: {
-      type: String,
     },
     mail: {
       type: String,
@@ -99,23 +101,73 @@ export default Vue.extend({
 <style scoped>
 @import url('@/assets/styles/variables.pcss');
 
-.box {
-  max-width: 620px;
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
-
-  &__active {
-    max-width: 560px;
-  }
-}
-
-.contact {
+.contact-us {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  width: 100%;
+  gap: 22px;
+  padding: 24px;
+  border-radius: 21px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: var(--z-header);
+  width: 560px;
+  background-color: var(--color-bg-popover);
+  color: var(--color-text-main);
+  font-size: 16px;
+  line-height: 23px;
+
+  &__title {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1;
+    color: var(--color-text-main);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__close {
+    cursor: pointer;
+    color: #948AB5;
+
+    &:hover {
+      color: var(--color-text-main);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__input {
+    background-color: #120E1E;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: inherit;
+    flex: 1;
+    border: none;
+    outline: none;
+    color: var(--color-text-main);
+
+    &::placeholder {
+      color: #948AB5;
+    }
+  }
+
+  &:deep(.button) {
+    font-size: inherit;
+    border-radius: 8px;
+  }
+
 }
 
 .team-hawk-so-t-me {
@@ -139,33 +191,6 @@ export default Vue.extend({
 a {
   color: #379fff;
   display: inline;
-}
-
-.div {
-  color: #f2f6ff;
-  font-weight: 700;
-  margin-bottom: 20px;
-  white-space: nowrap;
-
-  &__active {
-    color: #DBE6FF;
-  }
-
-  &-medium {
-    font-size: 36px;
-
-    @media (--screen-mobile) {
-      font-size: 26px;
-    }
-  }
-
-  &-small {
-    font-size: 26px;
-
-    @media (--screen-mobile) {
-      font-size: px;
-    }
-  }
 }
 
 .bottom-container {
@@ -195,25 +220,6 @@ a {
   border-radius: 8px;
   display: flex;
   flex-grow: 1;
-}
-
-.div-wrapper {
-  cursor: pointer;
-  align-items: center;
-  border-width: 0px;
-  background-color: #0d75d4;
-  border-radius: 8px;
-  gap: 10px;
-  padding: 10px 12px;
-  box-shadow: none;
-
-  @media (--screen-mobile) {
-    text-align: start;
-  }
-
-  &:hover {
-    background-color: #0b64b7;
-  }
 }
 
 .input-style {

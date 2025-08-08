@@ -55,12 +55,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
-import IconTelegram from '~/components/icons/IconTelegram.vue';
 
 export default Vue.extend({
-  components: {
-    IconTelegram,
-  },
   data() {
     return {
       menu: [
