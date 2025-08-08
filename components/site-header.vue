@@ -5,7 +5,7 @@
       'site-header--menu-showed': mobileMenuShowed
     }"
   >
-    <div class="site-header__inner">
+    <div class="block-inner-container">
       <span class="site-header__menu-toggler" @click="toggleMobileMenu">
         Menu
       </span>
@@ -20,18 +20,30 @@
         >
         Хоук
       </a>
-      <div class="site-header__menu">
-        <a href="https://codex.so/hawk-overview">О проекте</a>
-        <a href="https://docs.hawk.so/">Документация</a>
-        <a href="/pricing.pdf" target="_blank">Цены</a>
+      <div class="site-header__right">
+        <div class="site-header__menu">
+          <a href="https://codex.so/hawk-overview">О проекте</a>
+          <a href="https://docs.hawk.so/">Документация</a>
+          <a href="/pricing.pdf" target="_blank">Цены</a>
+        </div>
+        <div class="site-header__menu-separator" />
+        <a
+          href="https://garage.hawk.so/sign-up?from=landing-header"
+          class="site-header__menu-logo"
+        >
+          <IconSignIn />
+          Начать
+        </a>
+        <div class="site-header__menu-separator" />
+        <div class="site-header__menu-social">
+          <a href="https://github.com/codex-team?q=hawk&type=all&language=&sort=">
+            <IconGitHub alt="GitHub logo" />
+          </a>
+          <a href="https://t.me/hawk_tracker">
+            <IconTelegram alt="Telegram logo" />
+          </a>
+        </div>
       </div>
-      <a
-        href="https://garage.hawk.so/sign-up?from=landing-header"
-        class="site-header__menu-logo"
-      >
-        <IconSignIn />
-        Начать
-      </a>
     </div>
   </div>
 </template>
@@ -39,10 +51,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import IconSignIn from '~/assets/svg/sign-in.svg?inline';
+import IconGitHub from '~/components/icons/IconGitHub.vue';
+import IconTelegram from '~/components/icons/IconTelegram.vue';
 
 export default Vue.extend({
   components: {
     IconSignIn,
+    IconGitHub,
+    IconTelegram,
   },
   data() {
     return {
@@ -67,11 +83,13 @@ export default Vue.extend({
 @import url('@/assets/styles/variables.pcss');
 
   .site-header {
-    height: 50px;
-    background: var(--color-bg-header);
+    height: var(--layout-header-height);
+    background: var(--color-bg-main);
     color: var(--color-text-main);
-    font-size: 15px;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--color-separator);
 
     @media (--screen-mobile) {
       height: auto;
@@ -87,7 +105,6 @@ export default Vue.extend({
       align-items: center;
       flex-shrink: 0;
       height: 100%;
-      max-width: var(--layout-main-col-width);
       margin: 0 auto;
       padding: 0 var(--layout-paddings-horisontal);
 
@@ -101,9 +118,8 @@ export default Vue.extend({
       display: flex;
       align-items: center;
       margin-right: 55px;
-      font-weight: 900;
-      font-size: 15px;
-      color: #FFFFFF !important;
+      font-weight: 700;
+      font-size: 20px;
       letter-spacing: 0.38px;
       text-align: left;
 
@@ -113,9 +129,15 @@ export default Vue.extend({
       }
 
       img {
-        width: 24px;
-        margin-right: 7px;
+        width: 25.17px;
+        margin-right: 10px;
       }
+    }
+
+    &__right {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
     }
 
     &__menu {
@@ -123,6 +145,10 @@ export default Vue.extend({
       flex-direction: row;
       flex-shrink: 0;
       align-items: center;
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 500;
+      gap: 30px;
 
       @media (--screen-mobile) {
         display: none;
@@ -137,12 +163,14 @@ export default Vue.extend({
 
       a {
         display: flex;
-        margin-right: 30px;
 
         @media (--screen-mobile) {
           display: block;
           padding: 10px 0;
-          margin-right: 0;
+        }
+
+        &:hover {
+          color: var(--color-signal);
         }
       }
 
@@ -160,26 +188,25 @@ export default Vue.extend({
         }
       }
 
-      &__local-version {
-        width: auto;
-        height: 32px;
+      &-social {
         display: flex;
-        place-items: center;
-        border-radius: 35px;
-        padding: 1px 13px;
-        gap: 10px;
-        background: linear-gradient(248.21deg, #0075FF 25.68%, #B56BFF 107.97%);
+        align-items: center;
+        gap: 20px;
 
-        @media (--screen-mobile) {
-          display: none;
-        }
+        a {
+          color: var(--color-text-secondary);
 
-        .text-container {
-          font-weight: 500;
-          font-size: 15px;
-          line-height: 30px;
-          color: white;
+          &:hover {
+            color: var(--color-text-main);
+          }
         }
+      }
+
+      &-separator {
+        width: 1px;
+        height: 24px;
+        background: var(--color-separator);
+        margin: 0 20px;
       }
     }
 
@@ -224,30 +251,6 @@ export default Vue.extend({
 
       @media (--screen-mobile) {
         display: none;
-      }
-    }
-
-    &__signin {
-      display: flex;
-      align-items: center;
-      margin-left: auto;
-
-      @media (--screen-mobile) {
-        display: none;
-        margin-left: 0;
-        padding: 10px 0;
-        margin-bottom: 10px;
-        margin-top: 10px;
-      }
-
-      ^&--menu-showed & {
-        @media (--screen-mobile) {
-          display: flex;
-        }
-      }
-
-      svg {
-        margin-right: 6px;
       }
     }
   }

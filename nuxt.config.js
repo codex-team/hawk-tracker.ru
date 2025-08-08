@@ -18,11 +18,11 @@ export default {
       },
       {
         name: 'msapplication-TileColor',
-        content: '#242732',
+        content: '#000000',
       },
       {
         name: 'theme-color',
-        content: '#242732',
+        content: '#000000',
       },
       {
         name: 'apple-mobile-web-app-capable',
@@ -53,11 +53,6 @@ export default {
         sizes: '32x32',
       },
       {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: 'https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap',
-      },
-      {
         rel: 'icon',
         href: '/favicon.ico',
         sizes: '32x32',
@@ -65,6 +60,10 @@ export default {
       {
         rel: 'apple-touch-icon',
         href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'stylesheet',
+        href: '/fonts/inter.css',
       },
     ],
   },

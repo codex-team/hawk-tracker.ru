@@ -38,35 +38,7 @@
 import Vue, { PropType } from 'vue';
 import FeaturesBeNotified from './features-be-notified.vue';
 
-/**
- * Structure of a single feature
- */
-export interface Feature {
-  /**
-   * Feature name
-   */
-  title: string;
-
-  /**
-   * Short caption
-   */
-  description: string;
-
-  /**
-   * Image path
-   */
-  picture?: string;
-
-  /**
-   * Custom component name that should be used instead of picture
-   */
-  pictureComponent?: string;
-
-  /**
-   * Additional style overrides
-   */
-  style?: string | undefined;
-}
+import { Feature } from '~/types/feature';
 
 export default Vue.extend({
   components: {
@@ -151,7 +123,7 @@ export default Vue.extend({
     &-description {
       font-size: 17px;
       line-height: 24px;
-      color: var(--color-text-second);
+      color: var(--color-text-secondary);
 
       @media (--screen-small) {
         font-size: 15px;

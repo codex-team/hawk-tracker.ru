@@ -1,37 +1,38 @@
 <template>
   <div class="yard">
     <div class="landing">
-      <illustration class="landing__illustration" />
-      <div class="landing__content">
-        <div class="landing__content-head">
-          <div class="landing__content-head-left">
-            <h1>
-              Трекер ошибок
-            </h1>
-
-            <div class="description">
-              Хоук улучшает качество продукта.<br>
-              Он отлавливает ошибки в ПО и помогает их устранить.<br>
-              Локализованная версия позволяет не зависеть от зарубежных сервисов.<br>
-            </div>
-            <div class="landing__content-head-left-advantages">
-              <h2 class="landing__content-head-left-advantages-text">
-                Сервера в России
-              </h2>
-              <h2 class="landing__content-head-left-advantages-text">
-                Оплата по счету юр. лица
-              </h2>
-              <h2 class="landing__content-head-left-advantages-text">
-                Помощь с интеграцией
-              </h2>
-            </div>
-            <a href="https://garage.hawk.so/sign-up?from=landing-top" class="landing__content-head-button">
-              Зарегистрироваться
-            </a>
+      <div class="landing__head">
+        <div class="landing__head-content">
+          <h1 class="landing__head-title">
+            Мониторинг ошибок в ПО
+          </h1>
+          <div class="landing__head-subtitle">
+            с серверами в России и открытым исходным кодом
+          </div>
+          <div class="landing__head-buttons">
+            <Button
+              type="primary"
+              size="medium"
+              link="https://garage.hawk.so/sign-up?from=landing-top"
+            >
+              Начать улучшать ПО
+            </Button>
+            <Button
+              type="secondary"
+              size="medium"
+              link="https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c?from=landing-top"
+            >
+              Посмотреть демо
+            </Button>
           </div>
         </div>
-        <div class="landing__content-preview" :style="`transform: translateY(${Math.max(0, 150 - scroll * 0.35)}px)`">
-          <img src="~/assets/images/hawk-desktop.png" title="Hawk — российский трекер ошибок" alt="Изображение супер-современного интерфейса Hawk'a">
+        <div class="landing__head-picture-container">
+          <img
+            class="landing__head-picture"
+            src="~/assets/images/project-overview.png"
+            title="Хоук — российский трекер ошибок"
+            alt="Изображение интерфейса Хоук"
+          >
         </div>
       </div>
       <div class="contact-container">
@@ -85,17 +86,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Illustration from '~/assets/svg/flying-hawk.svg?inline';
-import Contact from '~/components/contact.vue';
-import gridInfo from '~/components/grid-info.vue';
-import { Feature } from '~/components/features.vue';
+import { Feature } from '~/types/feature';
 
 export default Vue.extend({
-  components: {
-    Illustration,
-    Contact,
-    gridInfo,
-  },
   jsonld() {
     return {
       '@context': 'https://schema.org',
@@ -381,217 +374,88 @@ export default Vue.extend({
 }
 
 .landing {
-  font-family: "Roboto-Regular", Helvetica;
-  position: relative;
-  background: #080E20;
-  align-items: center;
+  &__head {
+    background: linear-gradient(180deg, #121213 0%, #0B0911 100%);
+    border-radius: 22px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 
-  &__illustration {
-    width: 100%;
-    position: absolute;
-  }
-
-  &__content {
-    position: relative;
-    flex-shrink: 0;
-
-    &-head {
-      margin: 120px auto 0px;
-      padding: 0 var(--layout-paddings-horisontal);
-      justify-content: center;
+    &-content {
       display: flex;
-
-      @media (--screen-tall) {
-        margin: 170px auto;
-      }
-
-      @media (--screen-middle) {
-        padding: 0 40px;
-        margin: 130px auto 0;
-      }
-
-      @media (--screen-small) {
-        margin: 80px auto -50px;
-      }
-
-      @media (--screen-small) {
-        flex-direction: column;
-      }
-
-      &-left {
-        padding-right: 50px;
-        gap: 18px;
-        padding-bottom: 13px;
-        position: relative;
-        align-items: center;
-
-        @media (--screen-mobile) {
-          padding-right: 0;
-        }
-
-        h1 {
-          color: #F2F6FF;
-          font-size: 89px;
-          font-weight: 700;
-          margin: 0 0 22px 0;
-
-          @media (--screen-small) {
-            font-size: 60px;
-            margin-bottom: 16px;
-          }
-
-          @media (--screen-mobile) {
-            font-size: 30px;
-          }
-        }
-
-        &-advantages {
-          display: flex;
-          justify-content: space-between;
-          color: #F2F6FF;
-          font-weight: 700;
-          width: 100%;
-          line-height: 30px;
-          gap: 40px;
-          font-size: 22px;
-          margin-top: 13px;
-
-          @media (--screen-middle) {
-            gap: 20px;
-          }
-
-          @media (--screen-mobile) {
-            display: grid;
-            font-weight: 600;
-            font-size: 16px;
-            gap: 0px;
-          }
-
-          &-text {
-            flex: 1 0 auto;
-            letter-spacing: 0;
-            white-space: nowrap;
-            margin: 0;
-            font-size: inherit;
-          }
-        }
-
-        .description {
-          font-weight: 500;
-          color: #dbe6ffce;
-          letter-spacing: 0.33px;
-          font-size: 20px;
-          line-height: 30px;
-          overflow-wrap: normal;
-          width: 100%;
-          padding-bottom: 13px;
-
-          @media (--screen-small) {
-            font-size: 18px;
-            line-height: 26px;
-          }
-
-          @media (--screen-mobile) {
-            font-size: 14px;
-            line-height: 22px;
-          }
-        }
-      }
-
-      &-button {
-        font-size: 18px;
-        font-weight: 600;
-        margin-top: 40px;
-        display: inline-flex;
-        padding: 14px 20px;
-        background-image: linear-gradient(90deg, #5584F5 0%, #3761E0 100%);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 7px;
-        box-shadow: 0 12px 44px 0 rgba(0,0,0,0.10), inset 0 0 0 1px rgba(255,255,255,0.06);
-        transition: all 0.3s ease;
-
-        &:hover {
-          transform: translateY(-2px);
-        }
-
-        @media (--screen-mobile) {
-          margin-top: 20px;
-          font-size: 16px;
-          padding: 12px 18px;
-        }
-      }
-
-      &-right {
-        margin-left: auto;
-
-        .button {
-          display: flex;
-        }
-
-        @media (--screen-small) {
-          margin-left: 0;
-          margin-top: 30px;
-
-          .button {
-            display: inline-flex;
-            margin-right: 20px;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02)
-          }
-        }
-
-        @media (max-width: 560px) {
-          .button {
-            display: inline-flex;
-            width: 240px;
-          }
-        }
-
-        .button:not(:last-of-type) {
-          margin-bottom: 20px;
-        }
-      }
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 0 60px;
     }
 
-    &-preview {
+    &-title {
+      font-size: 40px;
+      line-height: 48px;
+      font-weight: 700;
+      color: #F2F6FF;
+
+      font-weight: 700;
+      font-size: 50px;
+      line-height: 59px;
+      background: linear-gradient(90deg, #CDD9FF 0%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+
+    }
+
+    &-subtitle {
+      margin-top: 10px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 147%;
+
+      background: linear-gradient(90deg, #9CA1FF 0%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+
+    }
+
+    &-picture-container {
       position: relative;
-      box-shadow: 0 12px 44px 0 rgba(0,0,0,0.50), inset 0 0 0 1px rgba(255,255,255,0.06);
-      border-radius: 7px;
-      overflow: hidden;
-      width: calc(var(--layout-main-col-width) * 1.1);
-      margin: 0 auto;
-      z-index: 1;
-      will-change: transform;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: -80px;
 
-      img {
-        width: 100%;
-        vertical-align: bottom;
-        background-image: linear-gradient(90deg, #1E202A 0%, #1E202A 4%, #242732 5%, #242732 24%, #2F3341 25%, #2F3341 100%);
-      }
-
-      @media (--screen-middle) {
-        width: var(--layout-main-col-width);
-      }
-
-      @media (max-width: 1080px) {
-        width: calc(var(--layout-main-col-width) * 0.95);
-      }
-
-      @media (--screen-tall) {
-        transform: none !important;
-      }
-
-      @media (--screen-mobile) {
-        padding-top: 60px;
-        transform: none !important;
-        border-radius: 7px;
-        box-shadow: none;
-      }
-
-      @media (--screen-small) {
-        width: 90%;
+      &::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        background: linear-gradient(135deg, #43455E 0%, #38374A 100%);
+        border-radius: 9px 9px 2px 2px;
+        z-index: 1;
       }
     }
+
+    &-picture {
+      max-width: var(--layout-content-container-width);
+      border-radius: 7px 7px 0 0;
+      display: block;
+      z-index: 2;
+    }
+
+    &-buttons {
+      display: flex;
+      gap: 20px;
+      padding-top: 30px;
+    }
+
   }
 }
 
@@ -644,7 +508,7 @@ export default Vue.extend({
   }
 
   &__content {
-    max-width: var(--layout-main-col-width);
+    max-width: var(--layout-block-inner-container-width);
     margin: 0 auto;
     padding: 0 var(--layout-paddings-horisontal);
   }

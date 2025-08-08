@@ -1,21 +1,22 @@
 <template>
   <div class="footer">
-    <div class="footer__inner">
-      <div class="footer__inner-text-1">
-        Hawk
+    <div class="block-inner-container">
+      <div class="block-content-container">
+        <div class="footer__inner">
+          <div class="footer__inner-text-1">
+            Hawk
+          </div>
+          <div class="footer__inner-text-2">
+            © 2018—2024
+          </div>
+          <a href="https://codex.so/hawk-overview">О проекте</a>
+          <a href="https://docs.hawk.so/hawk">Документация</a>
+          <a href="/pricing.pdf" target="_blank">Цены</a>
+        </div>
       </div>
-      <div class="footer__inner-text-2">
-        © 2018—2024
-      </div>
-      <a href="https://codex.so/hawk-overview">О проекте</a>
-      <a href="https://docs.hawk.so/hawk">Документация</a>
-      <a href="/pricing.pdf" target="_blank">Цены</a>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style lang="postcss">
 @import url('@/assets/styles/variables.pcss');
@@ -23,6 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--color-text-secondary);
 
   &__inner {
     display: flex;
@@ -30,9 +32,8 @@
     border-radius: 14px;
     padding: 10px 20px;
     gap: 20px;
-    background: #242936;
+    background: var(--color-bg-secondary);
 
-    color: #DBE6FF;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
