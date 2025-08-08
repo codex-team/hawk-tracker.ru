@@ -9,4 +9,7 @@ module.exports = {
     'plugin:nuxt/recommended',
     'codex',
   ],
+  rules: {
+    'jsdoc/require-returns': 'off',
+  },
 };

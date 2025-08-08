@@ -2,102 +2,45 @@
   <div ref="integrations" class="integrations" :class="{ 'integrations--visible': isVisible }">
     <div class="integrations__row">
       <div
-        v-for="n in lineLength"
+        v-for="n in totalItemsPerLine"
         :key="n"
         class="integrations__item"
       />
     </div>
 
-    <!-- First line -->
-    <div class="integrations__row">
-      <template v-if="Math.floor((lineLength - firstLine.length) / 2) > 0">
-        <div
-          v-for="n in Math.floor((lineLength - firstLine.length) / 2)"
-          :key="`first-line-before-${n}`"
-          class="integrations__item"
-        />
-      </template>
+    <!-- Dynamic lines -->
+    <div
+      v-for="(line, lineIndex) in lines"
+      :key="`line-${lineIndex}`"
+      class="integrations__row"
+    >
       <div
-        v-for="(integration, index) in firstLine"
+        v-for="n in Math.max(1, Math.floor((totalItemsPerLine - line.length) / 2))"
+        :key="`line-${lineIndex}-before-${n}`"
+        class="integrations__item"
+      />
+      <div
+        v-for="(integration, index) in line"
         :key="integration.name"
         class="integrations__item"
         :style="{
           '--glow-color': integration.glowColor,
-          '--animation-delay': `${index * 0.1}s`,
+          '--animation-delay': `${(lineIndex * maxItemsPerLine + index) * 0.1}s`,
         }"
       >
         <img :src="integration.picture" :alt="integration.name">
       </div>
-      <template v-if="Math.ceil((lineLength - firstLine.length) / 2) + 1 > 0">
-        <div
-          v-for="n in Math.ceil((lineLength - firstLine.length) / 2) + 1"
-          :key="`first-line-after-${n}`"
-          class="integrations__item"
-        />
-      </template>
-    </div>
 
-    <!-- Second line -->
-    <div class="integrations__row">
-      <template v-if="Math.ceil((lineLength - secondLine.length) / 2) > 0">
-        <div
-          v-for="n in Math.ceil((lineLength - secondLine.length) / 2)"
-          :key="`second-line-before-${n}`"
-          class="integrations__item"
-        />
-      </template>
       <div
-        v-for="(integration, index) in secondLine"
-        :key="integration.name"
+        v-for="n in Math.max(1, Math.ceil((totalItemsPerLine - line.length) / 2) + 1)"
+        :key="`line-${lineIndex}-after-${n}`"
         class="integrations__item"
-        :style="{
-          '--glow-color': integration.glowColor,
-          '--animation-delay': `${(index + 5) * 0.1}s`,
-        }"
-      >
-        <img :src="integration.picture" :alt="integration.name">
-      </div>
-      <template v-if="Math.floor((lineLength - secondLine.length) / 2) + 1 > 0">
-        <div
-          v-for="n in Math.ceil((lineLength - secondLine.length) / 2) + 1"
-          :key="`second-line-after-${n}`"
-          class="integrations__item"
-        />
-      </template>
-    </div>
-
-    <!-- Third line -->
-    <div class="integrations__row">
-      <template v-if="Math.floor((lineLength - thirdLine.length) / 2) > 0">
-        <div
-          v-for="n in Math.floor((lineLength - thirdLine.length) / 2)"
-          :key="`third-line-before-${n}`"
-          class="integrations__item"
-        />
-      </template>
-      <div
-        v-for="(integration, index) in thirdLine"
-        :key="integration.name"
-        class="integrations__item"
-        :style="{
-          '--glow-color': integration.glowColor,
-          '--animation-delay': `${(index + 13) * 0.1}s`,
-        }"
-      >
-        <img :src="integration.picture" :alt="integration.name">
-      </div>
-      <template v-if="Math.floor((lineLength - thirdLine.length) / 2) + 1 > 0">
-        <div
-          v-for="n in Math.ceil((lineLength - thirdLine.length) / 2) + 1"
-          :key="`third-line-after-${n}`"
-          class="integrations__item"
-        />
-      </template>
+      />
     </div>
 
     <div class="integrations__row">
       <div
-        v-for="n in lineLength"
+        v-for="n in totalItemsPerLine"
         :key="n"
         class="integrations__item"
       />
@@ -128,8 +71,26 @@ import webpackSvg from '~/assets/svg/integrations/webpack.svg';
 import viteSvg from '~/assets/svg/integrations/vite.svg';
 import sentrySvg from '~/assets/svg/integrations/sentry.svg';
 
+interface Integration {
+  name: string;
+  picture: string;
+  link: string;
+  glowColor: string;
+}
+
+type Data = {
+  integrations: Integration[];
+  windowWidth: number;
+  isVisible: boolean;
+  observer: IntersectionObserver | null;
+  mobileBreakpoint: number;
+  itemsWidth: number;
+  itemsGap: number;
+  containerPadding: number;
+};
+
 export default Vue.extend({
-  data() {
+  data: function (): Data {
     return {
       integrations: [
         {
@@ -245,27 +206,117 @@ export default Vue.extend({
       isVisible: false,
       observer: null as IntersectionObserver | null,
       mobileBreakpoint: 850,
+      itemsWidth: 80,
+      itemsGap: 20,
+      containerPadding: 2 * 20,
     };
   },
   computed: {
-    lineLength() {
-      const itemWidth = 80;
-      const itemsGap = 20;
-      const lineWidth = this.windowWidth - 2 * 20;
-
-      return Math.ceil(lineWidth / (itemWidth + itemsGap));
+    /**
+     * Maximum number of items per line
+     * Used for the first and last empty lines
+     */
+    totalItemsPerLine: function (): number {
+      return Math.ceil(this.windowWidth / (this.itemsWidth + this.itemsGap));
     },
-    isMobile() {
+
+    /**
+     * How many non-empty items should be in the line
+     * Based on the screen width
+     */
+    maxItemsPerLine: function (): number {
+      // Use 30% of screen width on desktop, 100% on mobile
+      const isMobile = this.windowWidth < this.mobileBreakpoint;
+      const maxWidth = isMobile ? this.windowWidth - this.containerPadding : this.windowWidth * 0.3;
+
+      return Math.ceil(maxWidth / (this.itemsWidth + this.itemsGap));
+    },
+
+    /**
+     * Whether the screen is mobile
+     */
+    isMobile: function (): boolean {
       return this.windowWidth < this.mobileBreakpoint;
     },
-    firstLine() {
-      return this.integrations.slice(0, 5);
+
+    /**
+     * How many lines should be in the component
+     * Based on the max items per line
+     */
+    totalLines: function (): number {
+      // Calculate how many lines we need based on total items and items per line
+      const totalItems = this.integrations.length;
+      const maxItemsPerLine = this.maxItemsPerLine;
+
+      return Math.ceil(totalItems / maxItemsPerLine);
     },
-    secondLine() {
-      return this.integrations.slice(5, 13);
-    },
-    thirdLine() {
-      return this.integrations.slice(13);
+
+    /**
+     * Separation by lines
+     */
+    lines: function (): Integration[][] {
+      const totalItems = this.integrations.length;
+      const targetItemsPerLine = this.maxItemsPerLine;
+      const lines = [];
+
+      if (this.isMobile) {
+        // On mobile, use normal distribution
+        const totalLines = Math.ceil(totalItems / targetItemsPerLine);
+        const baseItemsPerLine = Math.floor(totalItems / totalLines);
+        const remainder = totalItems % totalLines;
+
+        for (let i = 0; i < totalLines; i++) {
+          const startIndex = i * baseItemsPerLine + Math.min(i, remainder);
+          const endIndex = startIndex + baseItemsPerLine + (i < remainder ? 1 : 0);
+
+          lines.push(this.integrations.slice(startIndex, endIndex));
+        }
+      } else {
+        // On desktop, make first and last lines have -1 item, center lines have +2 items
+        const totalLines = Math.ceil(totalItems / targetItemsPerLine);
+
+        if (totalLines <= 2) {
+          // If only 1-2 lines, use normal distribution
+          const baseItemsPerLine = Math.floor(totalItems / totalLines);
+          const remainder = totalItems % totalLines;
+
+          for (let i = 0; i < totalLines; i++) {
+            const startIndex = i * baseItemsPerLine + Math.min(i, remainder);
+            const endIndex = startIndex + baseItemsPerLine + (i < remainder ? 1 : 0);
+
+            lines.push(this.integrations.slice(startIndex, endIndex));
+          }
+        } else {
+          // For 3+ lines, redistribute items
+          const itemsPerLine = Math.floor(totalItems / totalLines);
+          const remainder = totalItems % totalLines;
+          let currentIndex = 0;
+
+          for (let i = 0; i < totalLines; i++) {
+            let itemsInThisLine;
+
+            if (i === 0 || i === totalLines - 1) {
+              // First and last lines get -1 item
+              itemsInThisLine = Math.max(1, itemsPerLine - 1);
+            } else {
+              // Center lines get +2 items (if available)
+              itemsInThisLine = itemsPerLine + 2;
+            }
+
+            // Adjust for remainder
+            if (i < remainder) {
+              itemsInThisLine += 1;
+            }
+
+            const endIndex = Math.min(currentIndex + itemsInThisLine, totalItems);
+
+            lines.push(this.integrations.slice(currentIndex, endIndex));
+            currentIndex = endIndex;
+          }
+        }
+      }
+
+      return lines;
     },
   },
   mounted() {
@@ -286,11 +337,11 @@ export default Vue.extend({
   },
 
   methods: {
-    handleResize() {
+    handleResize: function (): void {
       this.windowWidth = window.innerWidth;
     },
 
-    setupIntersectionObserver() {
+    setupIntersectionObserver: function (): void {
       this.observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -313,6 +364,18 @@ export default Vue.extend({
         this.observer.observe(element);
       }
     },
+
+    calculateItemsPerLine: function (): number {
+      const itemWidth = 80;
+      const itemsGap = 20;
+      const containerPadding = 2 * 20;
+
+      // Use 60% of screen width on desktop, 100% on mobile
+      const isMobile = this.windowWidth < this.mobileBreakpoint;
+      const maxWidth = isMobile ? this.windowWidth - containerPadding : this.windowWidth * 0.6;
+
+      return Math.ceil(maxWidth / (itemWidth + itemsGap));
+    },
   },
 });
 </script>
@@ -329,6 +392,7 @@ export default Vue.extend({
   width: 100%;
   overflow: hidden;
   position: relative;
+  color:red;
 
   mask-image: linear-gradient(90deg,transparent 0%,#ffffff 300px,#ffffff calc(100vw - 300px),transparent 100%);
 
@@ -363,6 +427,12 @@ export default Vue.extend({
 
     &:nth-of-type(2n+1) {
       margin-left: -50px;
+    }
+
+    @media (--screen-mobile-extra-small) {
+      &:nth-of-type(2n) {
+        margin-left: -100px;
+      }
     }
   }
 
