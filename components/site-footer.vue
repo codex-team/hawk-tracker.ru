@@ -188,12 +188,6 @@ export default Vue.extend({
     };
   },
   methods: {
-    /**
-     * Shows/Hides the mobile menu
-     */
-    toggleMobileMenu(): void {
-      this.mobileMenuShowed = !this.mobileMenuShowed;
-    },
   },
 });
 </script>

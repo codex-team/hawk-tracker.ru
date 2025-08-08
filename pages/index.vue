@@ -1,7 +1,6 @@
 <template>
-  <div class="yard">
-    <div class="landing">
-      <div class="landing__head">
+  <div class="landing">
+    <!-- <div class="landing__head">
         <div class="landing__head-content">
           <h1 class="landing__head-title">
             Мониторинг ошибок в ПО
@@ -34,17 +33,38 @@
             alt="Изображение интерфейса Хоук"
           >
         </div>
-      </div>
+      </div> -->
 
-      <transition name="fade">
+    <!-- <transition name="fade">
         <Contact
           v-show="isContactUsFormShown"
           :mail="mail"
           @update:mail="updateMail"
           @close="isContactUsFormShown = false;"
         />
-      </transition>
-    </div>
+      </transition> -->
+
+    <LandingSection>
+      <template #title>
+        Проверено продуктами
+      </template>
+      <template #description>
+        Более 1400 проектов используют Хоук
+      </template>
+      <template #content>
+        <div class="used-by">
+          <img src="~/assets/svg/used-by/ofd.svg" alt="Платформа ОФД">
+          <img src="~/assets/svg/used-by/rocket.svg" alt="Рокетбанк">
+          <img src="~/assets/svg/used-by/befree.svg" alt="Befree">
+          <img src="~/assets/svg/used-by/slogy.svg" alt="Слоджи">
+          <img src="~/assets/svg/used-by/vc.svg" alt="vc.ru">
+          <img src="~/assets/svg/used-by/wazzup.svg" alt="Wazzup">
+          <img src="~/assets/svg/used-by/dtf.svg" alt="DTF">
+          <img src="~/assets/svg/used-by/stworka.svg" alt="Stworka">
+        </div>
+      </template>
+    </LandingSection>
+
     <div class="section section--with-gradient">
       <div class="section__content">
         <h2 class="section__title">
@@ -368,17 +388,6 @@ export default Vue.extend({
 @custom-media --screen-tall (min-height: 1200px);
 @custom-media --screen-middle (max-width: 1170px);
 
-.extra-indent_15px {
-  margin-top: 15px;
-}
-
-.yard {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-}
-
 .landing {
   &__head {
     background: linear-gradient(180deg, #121213 0%, #0B0911 100%);
@@ -463,6 +472,13 @@ export default Vue.extend({
     }
 
   }
+}
+
+.used-by {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
 }
 
 .content-blocks {
