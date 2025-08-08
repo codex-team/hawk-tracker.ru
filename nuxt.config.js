@@ -61,15 +61,28 @@ export default {
         rel: 'apple-touch-icon',
         href: '/apple-touch-icon.png',
       },
+      /* Font preloading to prevent font jumping */
       {
-        rel: 'stylesheet',
-        href: '/fonts/inter.css',
+        rel: 'preload',
+        href: '/fonts/Inter/InterVariable.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/Inter/Inter-Regular.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous',
       },
     ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '@/static/fonts/Inter/inter.css',
+    '@/static/fonts/JetBrainsMono/jetbrainsmono.css',
     '@/assets/styles/variables',
     '@/assets/styles/common',
   ],

@@ -39,12 +39,19 @@
   --layout-page-content-max-width: 660px;
   --layout-features-column-width: 620px;
 
-  --font-mono: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+  --font-mono: "JetBrains Mono", SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
 }
 
 @media (--screen-small) {
   :root {
     --layout-block-inner-container-width: 860px;
+  }
+}
+
+/* Variable font support */
+@supports (font-variation-settings: normal) {
+  :root {
+    --font-mono: "JetBrainsMonoVariable", "JetBrains Mono", SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
   }
 }
 

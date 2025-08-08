@@ -45,6 +45,21 @@
       </transition> -->
 
     <LandingSection>
+      <template #icon>
+        <img class="sentry-to-hawk-picture" src="~/assets/images/sentry-to-hawk.png" alt="Хоук на замену Sentry">
+      </template>
+      <template #title>
+        Замена Sentry
+      </template>
+      <template #description>
+        Миграция в одну строку
+      </template>
+      <template #content>
+        <SentryCode />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
       <template #title>
         Проверено продуктами
       </template>
@@ -472,6 +487,10 @@ export default Vue.extend({
     }
 
   }
+}
+
+.sentry-to-hawk-picture {
+  height: 43px;
 }
 
 .used-by {

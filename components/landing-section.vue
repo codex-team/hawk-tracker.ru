@@ -31,8 +31,6 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-
   padding: 180px 0;
 
   &__icon {
@@ -45,6 +43,7 @@ export default Vue.extend({
     line-height: 1.2em;
     color: var(--color-text-main);
     margin-bottom: 9px;
+    text-align: center;
   }
 
   &__description {
@@ -52,7 +51,11 @@ export default Vue.extend({
     line-height: 1.27em;
     color: var(--color-text-secondary);
     margin-bottom: 50px;
+    text-align: center;
   }
 
+  &__content {
+    max-width: 100%;
+  }
 }
 </style>
