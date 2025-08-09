@@ -36,13 +36,34 @@
     </div> -->
 
     <!-- <transition name="fade">
-        <Contact
-          v-show="isContactUsFormShown"
-          :mail="mail"
-          @update:mail="updateMail"
-          @close="isContactUsFormShown = false;"
-        />
-      </transition> -->
+      <Contact
+        v-show="isContactUsFormShown"
+        :mail="mail"
+        @update:mail="updateMail"
+        @close="isContactUsFormShown = false;"
+      />
+    </transition> -->
+
+    <LandingSection>
+      <template #icon>
+        <div class="features-title-picture">
+          <img src="~/assets/images/check-features.png" alt="Хоук обладает всей необходимой функциональностью для мониторинга ошибок в ПО">
+        </div>
+      </template>
+      <template #title>
+        <span class="gradient-text gradient-text--pink">
+          Мощная функциональность
+        </span>
+      </template>
+      <template #description>
+        <span class="gradient-text gradient-text--grey">
+          Все, что нужно для мониторинга ошибок
+        </span>
+      </template>
+      <template #content>
+        <Features />
+      </template>
+    </LandingSection>
 
     <LandingSection>
       <template #icon>
@@ -51,7 +72,9 @@
         </div>
       </template>
       <template #title>
-        Множество интеграций
+        <span class="gradient-text gradient-text--purple">
+          Множество интеграций
+        </span>
       </template>
       <template #description>
         Подключение за 5 минут
@@ -128,6 +151,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Features from '~/components/features.vue';
 import { Feature } from '~/types/feature';
 
 export default Vue.extend({
@@ -510,7 +534,8 @@ export default Vue.extend({
   height: 43px;
 }
 
-.integrations-title-picture {
+.integrations-title-picture,
+.features-title-picture {
   position: relative;
 
   img {
@@ -523,11 +548,36 @@ export default Vue.extend({
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: radial-gradient(50% 50% at 50% 50%, rgba(140, 101, 216, 0.34), transparent);
+    background: radial-gradient(50% 50% at 50% 50%, #D7C9FF, transparent);
     width: 120px;
     height: 120px;
     z-index: -1;
-    opacity: 0.9;
+    opacity: 0.15;
+  }
+}
+
+.features-title-picture {
+  &::before {
+    background: radial-gradient(50% 50% at 50% 50%, #FFBCEF, transparent);
+  }
+}
+
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  &--purple {
+    background-image: linear-gradient(90deg, #CDD9FF 0%, #989CE6 100%);
+  }
+
+  &--pink {
+    background-image: linear-gradient(90deg, #ffffff 0%, #F7AEFF 100%);
+  }
+
+  &--grey {
+    background-image: linear-gradient(90deg, #ffffff 0%, #838383 100%);
   }
 }
 

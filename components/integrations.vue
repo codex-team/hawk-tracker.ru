@@ -1,5 +1,5 @@
 <template>
-  <div ref="integrations" class="integrations" :class="{ 'integrations--visible': isVisible }">
+  <div ref="elementRef" class="integrations" :class="{ 'integrations--visible': isVisible }">
     <div class="integrations__row">
       <div
         v-for="n in totalItemsPerLine"
@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 
 /* Import SVG assets */
 import nodejsSvg from '~/assets/svg/integrations/nodejs.svg';
@@ -81,15 +82,22 @@ interface Integration {
 type Data = {
   integrations: Integration[];
   windowWidth: number;
-  isVisible: boolean;
-  observer: IntersectionObserver | null;
   mobileBreakpoint: number;
-  itemsWidth: number;
-  itemsGap: number;
   containerPadding: number;
 };
 
 export default Vue.extend({
+
+  setup() {
+    const { isVisible, elementRef } = useIntersectionObserver({
+      threshold: 0.1,
+    });
+
+    return {
+      isVisible,
+      elementRef,
+    };
+  },
   data: function (): Data {
     return {
       integrations: [
@@ -203,21 +211,32 @@ export default Vue.extend({
         },
       ],
       windowWidth: 1280,
-      isVisible: false,
-      observer: null as IntersectionObserver | null,
       mobileBreakpoint: 850,
-      itemsWidth: 80,
-      itemsGap: 20,
       containerPadding: 2 * 20,
     };
   },
   computed: {
+
+    /**
+     * Integration item square size. Different for mobile and desktop.
+     */
+    itemsSize: function (): number {
+      return this.windowWidth < this.mobileBreakpoint ? 60 : 80;
+    },
+
+    /**
+     * Integration item gap. Different for mobile and desktop.
+     */
+    itemsGap: function (): number {
+      return this.windowWidth < this.mobileBreakpoint ? 10 : 20;
+    },
+
     /**
      * Maximum number of items per line
      * Used for the first and last empty lines
      */
     totalItemsPerLine: function (): number {
-      return Math.ceil(this.windowWidth / (this.itemsWidth + this.itemsGap));
+      return Math.ceil(this.windowWidth / (this.itemsSize + this.itemsGap));
     },
 
     /**
@@ -227,9 +246,9 @@ export default Vue.extend({
     maxItemsPerLine: function (): number {
       // Use 30% of screen width on desktop, 100% on mobile
       const isMobile = this.windowWidth < this.mobileBreakpoint;
-      const maxWidth = isMobile ? this.windowWidth - this.containerPadding : this.windowWidth * 0.3;
+      const maxWidth = isMobile ? this.windowWidth * 0.8 : this.windowWidth * 0.3;
 
-      return Math.ceil(maxWidth / (this.itemsWidth + this.itemsGap));
+      return Math.ceil(maxWidth / (this.itemsSize + this.itemsGap));
     },
 
     /**
@@ -321,48 +340,16 @@ export default Vue.extend({
   },
   mounted() {
     this.windowWidth = window.innerWidth;
-
     window.addEventListener('resize', this.handleResize);
-
-    // Set up intersection observer for animation trigger
-    this.setupIntersectionObserver();
   },
 
   beforeDestroy() {
     window.removeEventListener('resize', this.handleResize);
-
-    if (this.observer) {
-      this.observer.disconnect();
-    }
   },
 
   methods: {
     handleResize: function (): void {
       this.windowWidth = window.innerWidth;
-    },
-
-    setupIntersectionObserver: function (): void {
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.isVisible = true;
-              if (this.observer) {
-                this.observer.disconnect();
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.1,
-        }
-      );
-
-      const element = this.$refs.integrations as HTMLElement;
-
-      if (element) {
-        this.observer.observe(element);
-      }
     },
 
     calculateItemsPerLine: function (): number {
@@ -384,10 +371,19 @@ export default Vue.extend({
 @import url('@/assets/styles/variables.pcss');
 
 .integrations {
+
+  --items-size: 80px;
+  --items-gap: 20px;
+
+  @media (--screen-mobile) {
+    --items-size: 60px;
+    --items-gap: 10px;
+  }
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: var(--items-gap);
   background-color: #060606;
   width: 100%;
   overflow: hidden;
@@ -423,22 +419,16 @@ export default Vue.extend({
   &__row {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: var(--items-gap);
 
     &:nth-of-type(2n+1) {
-      margin-left: -50px;
-    }
-
-    @media (--screen-mobile-extra-small) {
-      &:nth-of-type(2n) {
-        margin-left: -100px;
-      }
+      margin-left: calc(var(--items-size) / 2 * -1 - var(--items-gap) / 2);
     }
   }
 
   &__item {
-    width: 80px;
-    height: 80px;
+    width: var(--items-size);
+    height: var(--items-size);
 
     background: #0A0A0A;
     border: 1px solid #1C1C1C;
@@ -467,7 +457,7 @@ export default Vue.extend({
 
     &:hover {
       box-shadow: 0 0 35px -9px var(--glow-color, #ffffff41);
-      transition: box-shadow 0.15s ease-in;
+      transition: box-shadow 0.05s ease-in;
     }
 
     &:not(:hover) {
