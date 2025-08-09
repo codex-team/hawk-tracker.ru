@@ -16,7 +16,10 @@ interface ObserverEntry {
   };
 }
 
-// Shared observer instance
+/**
+ * We store the observer instance in a shared variable to avoid creating a new instance for each element.
+ * And then reuse it for each element.
+ */
 let sharedObserver: IntersectionObserver | null = null;
 const observerEntries = new Map<HTMLElement, ObserverEntry>();
 

@@ -12,8 +12,8 @@
         </div>
 
         <div class="features__row">
-          <div class="features__cell features__cell--full">
-            Отслеживайте ошибки
+          <div class="features__cell features__cell--full" style="border: 0">
+            <FeatureFeed />
           </div>
         </div>
 
