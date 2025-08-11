@@ -48,6 +48,8 @@ const { isVisible, elementRef } = useIntersectionObserver({
 </script>
 
 <style lang="pcss">
+@import '~/assets/styles/variables.pcss';
+
 .feature-alerts {
   --padding: var(--layout-paddings-horisontal);
 
@@ -101,7 +103,7 @@ const { isVisible, elementRef } = useIntersectionObserver({
       width: 66%;
       transform: translateX(1px);
 
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      @media (--screen-retina) {
         transform: none;
       }
     }

@@ -12,14 +12,14 @@
         </div>
 
         <div class="features__row">
-          <div class="features__cell features__cell--full" style="border: 0">
+          <div class="features__cell features__cell--full">
             <FeatureFeed />
           </div>
         </div>
 
         <div class="features__row">
           <div class="features__cell features__cell--full">
-            Трассировка ошибки
+            <FeatureTracing />
           </div>
         </div>
 
@@ -124,6 +124,7 @@ export default Vue.extend({
 
     &--full {
       flex-basis: 100%;
+      border: 0;
     }
   }
 }

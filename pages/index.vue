@@ -1,6 +1,6 @@
 <template>
   <div class="landing">
-    <div class="landing__head">
+    <!-- <div class="landing__head">
       <div class="landing__head-content">
         <h1 class="landing__head-title">
           Мониторинг ошибок в ПО
@@ -33,7 +33,7 @@
           alt="Изображение интерфейса Хоук"
         >
       </div>
-    </div>
+    </div> -->
 
     <!-- <transition name="fade">
       <Contact

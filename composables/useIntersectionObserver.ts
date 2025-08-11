@@ -34,7 +34,12 @@ function getSharedObserver(): IntersectionObserver {
           const observerEntry = observerEntries.get(entry.target as HTMLElement);
 
           if (observerEntry) {
-            if (entry.isIntersecting) {
+            // Calculate intersection ratio based on element's own threshold
+            const intersectionRatio = entry.intersectionRatio;
+            const threshold = observerEntry.options.threshold || 0.3;
+            const isIntersecting = intersectionRatio >= threshold;
+
+            if (isIntersecting && !observerEntry.isVisible) {
               observerEntry.isVisible = true;
               observerEntry.callbacks.onVisible();
 
@@ -43,7 +48,7 @@ function getSharedObserver(): IntersectionObserver {
                 sharedObserver?.unobserve(entry.target);
                 observerEntries.delete(entry.target as HTMLElement);
               }
-            } else if (!observerEntry.options.once && observerEntry.callbacks.onHidden) {
+            } else if (!isIntersecting && !observerEntry.options.once && observerEntry.callbacks.onHidden) {
               observerEntry.isVisible = false;
               observerEntry.callbacks.onHidden();
             }
@@ -51,8 +56,8 @@ function getSharedObserver(): IntersectionObserver {
         });
       },
       {
-        threshold: 0.1, // Default threshold, will be overridden by individual options
-        rootMargin: '0px 0px -50px 0px', // Default rootMargin
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0], // Multiple thresholds for smooth detection
+        rootMargin: '0px 0px -80px 0px', // Increased bottom margin for earlier detection
       }
     );
   }
@@ -68,8 +73,8 @@ function getSharedObserver(): IntersectionObserver {
  */
 export function useIntersectionObserver(options: UseIntersectionObserverOptions = {}) {
   const {
-    threshold = 0.3,
-    rootMargin = '0px 0px -50px 0px',
+    threshold = 0.5, // Higher threshold - element must be 50% visible
+    rootMargin = '0px 0px -60px 0px', // More padding from bottom
     once = true,
   } = options;
 

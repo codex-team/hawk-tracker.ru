@@ -68,7 +68,7 @@
               </div>
 
               <div class="p-feed__item-time">
-                {{ event.time }}
+                now
               </div>
 
               <div class="p-feed__item-badge-wrapper">
@@ -104,6 +104,7 @@
                   :key="user"
                   :user="user"
                   size="12"
+                  class="viewed-by-user"
                 />
               </div>
 
@@ -156,7 +157,7 @@ export default Vue.extend({
           time: 'now',
           message: 'Cannot read properties of undefined (reading \'default\')',
           assignee: null,
-          viewedBy: [1, 2],
+          viewedBy: [],
         },
         {
           isStared: true,
@@ -168,7 +169,7 @@ export default Vue.extend({
           time: 'now',
           message: 'Uncaught Error: Can not find a Block from this child Node',
           assignee: 1,
-          viewedBy: [ 3 ],
+          viewedBy: [],
         },
         {
           isStared: false,
@@ -187,7 +188,7 @@ export default Vue.extend({
           isHovered: false,
           isResolved: false,
           isNew: false,
-          count: '1 012',
+          count: '1 072',
           users: '301',
           time: '10:12',
           message: 'Installed GD does not support webp images',
@@ -199,7 +200,7 @@ export default Vue.extend({
           isHovered: false,
           isResolved: true,
           isNew: false,
-          count: '1 212',
+          count: '1403',
           users: '98',
           time: '09:12',
           message: 'Cannot read property \'lastElementChild\' of undefined',
@@ -211,7 +212,7 @@ export default Vue.extend({
           isHovered: false,
           isResolved: false,
           isNew: false,
-          count: '1 012',
+          count: '922',
           users: '101',
           time: '08:12',
           message: 'The play method is not allowed by the user agent or the platform in the current context of the document.',
@@ -256,11 +257,91 @@ export default Vue.extend({
             requestAnimationFrame(() => {
               setTimeout(addNextEvent, randomDelay);
             });
+          } else {
+            // All events added, start viewed-by animation
+            setTimeout(() => {
+              this.startViewedByAnimation();
+            }, 100);
           }
         }
       };
 
       addNextEvent();
+    },
+
+    startViewedByAnimation() {
+      // Take 2 random events from visible events
+      const selectedEvents = this.shuffleArray([ ...this.visibleEvents ]).slice(0, 2);
+
+      // Define which users should be added to each event
+      const eventUsers = [
+        {
+          eventMessage: selectedEvents[0]?.message,
+          users: [1, 2],
+        },
+        {
+          eventMessage: selectedEvents[1]?.message,
+          users: [ 3 ],
+        },
+      ];
+
+      // Filter out events that don't exist
+      const validEventUsers = eventUsers.filter(item => item.eventMessage);
+
+      if (validEventUsers.length === 0) {
+        return;
+      }
+
+      // Get all users from selected events
+      const allUsers = validEventUsers.flatMap(item =>
+        item.users.map((user: number) => ({
+          user,
+          eventMessage: item.eventMessage,
+        }))
+      );
+
+      // Shuffle users
+      const shuffledUsers = this.shuffleArray([ ...allUsers ]);
+
+      // Start adding users one by one
+      let userIndex = 0;
+      const addNextUser = () => {
+        if (userIndex < shuffledUsers.length) {
+          const userData = shuffledUsers[userIndex];
+          const eventMessage = userData.eventMessage;
+
+          // Find the event in visibleEvents
+          const event = this.visibleEvents.find(e => e.message === eventMessage);
+
+          if (event) {
+            // Add user to the event's viewed-by list
+            event.viewedBy.push(userData.user);
+          }
+
+          userIndex++;
+
+          if (userIndex < shuffledUsers.length) {
+            const randomDelay = Math.random() * 400 + 200; // Random delay between 200-600ms
+
+            setTimeout(addNextUser, randomDelay);
+          }
+        }
+      };
+
+      // Start after a short delay
+      setTimeout(addNextUser, 300);
+    },
+
+    shuffleArray(array: any[]) {
+      const shuffled = [ ...array ];
+
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      return shuffled;
     },
   },
 });
@@ -281,7 +362,7 @@ export default Vue.extend({
   background: linear-gradient(180deg, #25272C 0%, #0D1015 100%);
 
   &__container {
-    max-width: 847px;
+    max-width: var(--layout-features-wide-content-width);
   }
 
    &::after {
@@ -305,6 +386,18 @@ export default Vue.extend({
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Animation keyframes for viewed-by users */
+@keyframes userFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -433,6 +526,10 @@ export default Vue.extend({
       align-items: center;
       gap: 6px;
       margin-right: 12px;
+
+      .viewed-by-user {
+        animation: userFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
     }
 
     &-time {
