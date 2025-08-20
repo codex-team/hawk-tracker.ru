@@ -2,7 +2,7 @@
   <div class="block-inner-container">
     <div class="block-content-container">
       <div class="features">
-        <div class="features__row">
+        <!-- <div class="features__row">
           <div class="features__cell">
             <FeatureTelemetry />
           </div>
@@ -25,20 +25,20 @@
 
         <div class="features__row features__row--grid-context">
           <div class="features__cell">
-            Детализация инцидента
+            <FeatureDetails />
           </div>
           <div class="features__cell">
-            Кастомные поля
+            <FeatureCustomFields />
           </div>
 
           <div class="features__cell">
-            Прикрепление релизов
+            <FeatureReleases />
           </div>
-        </div>
+        </div> -->
 
         <div class="features__row features__row--grid-context features__row--grid-context--right-bottom-wide">
           <div class="features__cell">
-            Настройка доступа
+            <FeatureMembership />
           </div>
           <div class="features__cell">
             Исправлено Игорировать В избранное
@@ -83,10 +83,10 @@ export default Vue.extend({
         'left right-top'
         'left right-bottom';
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: auto auto;
       gap: var(--gap);
       align-items: stretch;
-      height: 500px;
+      min-height: 40px;
 
       &--right-bottom-wide {
         grid-template-rows: 1fr 80%;

@@ -32,16 +32,6 @@ Sentry.<span class="sentry-code__method">init</span>({
 }
 
 .sentry-code {
-  --color-text: #E1E4E8;
-  --color-comment: var(--color-text-secondary);
-  --color-token: #F97583;
-  --color-string: #9ECBFF;
-  --color-method: #B392F0;
-  --color-added-line-text: #63FFA1;
-  --color-added-line-bg: #083A1D;
-  --color-removed-line-text: #FF9FA1;
-  --color-removed-line-bg: #352020;
-
   max-width: 100%;
 
   font-size: 13.2px;
@@ -54,29 +44,29 @@ Sentry.<span class="sentry-code__method">init</span>({
   }
 
   &__comment {
-    color: var(--color-comment);
+    color: var(--color-code-comment);
   }
 
   &__token {
-    color: var(--color-token);
+    color: var(--color-code-token);
   }
 
   &__string {
-    color: var(--color-string);
+    color: var(--color-code-string);
   }
 
   &__method {
-    color: var(--color-method);
+    color: var(--color-code-method);
   }
 
   &__added-line {
-    color: var(--color-added-line-text);
-    background: var(--color-added-line-bg);
+    color: var(--color-code-added-line-text);
+    background: var(--color-code-added-line-bg);
   }
 
   &__removed-line {
-    color: var(--color-removed-line-text);
-    background: var(--color-removed-line-bg);
+    color: var(--color-code-removed-line-text);
+    background: var(--color-code-removed-line-bg);
   }
 }
 </style>

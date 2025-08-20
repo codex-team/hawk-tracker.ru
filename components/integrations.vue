@@ -19,7 +19,7 @@
         :key="`line-${lineIndex}-before-${n}`"
         class="integrations__item"
       />
-      <div
+      <a
         v-for="(integration, index) in line"
         :key="integration.name"
         class="integrations__item"
@@ -27,9 +27,11 @@
           '--glow-color': integration.glowColor,
           '--animation-delay': `${(lineIndex * maxItemsPerLine + index) * 0.1}s`,
         }"
+        :href="integration.link"
+        target="_blank"
       >
         <img :src="integration.picture" :alt="integration.name">
-      </div>
+      </a>
 
       <div
         v-for="n in Math.max(1, Math.ceil((totalItemsPerLine - line.length) / 2) + 1)"
@@ -246,7 +248,7 @@ export default Vue.extend({
     maxItemsPerLine: function (): number {
       // Use 30% of screen width on desktop, 100% on mobile
       const isMobile = this.windowWidth < this.mobileBreakpoint;
-      const maxWidth = isMobile ? this.windowWidth * 0.8 : this.windowWidth * 0.3;
+      const maxWidth = isMobile ? this.windowWidth * 0.8 : this.windowWidth * 0.4;
 
       return Math.ceil(maxWidth / (this.itemsSize + this.itemsGap));
     },
@@ -294,7 +296,7 @@ export default Vue.extend({
         // On desktop, make first and last lines have -1 item, center lines have +2 items
         const totalLines = Math.ceil(totalItems / targetItemsPerLine);
 
-        if (totalLines <= 2) {
+        if (true || totalLines <= 2) {
           // If only 1-2 lines, use normal distribution
           const baseItemsPerLine = Math.floor(totalItems / totalLines);
           const remainder = totalItems % totalLines;

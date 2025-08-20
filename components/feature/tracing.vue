@@ -160,7 +160,8 @@ export default Vue.extend({
   align-items: center;
   position: relative;
 
-  background: linear-gradient(180deg, #251C20 0%, #0F0A0A 100%);
+  /* background: linear-gradient(180deg, #251C20 0%, #0F0A0A 100%); */
+  background: #000;
 
   &__container {
     max-width: var(--layout-features-wide-content-width);
@@ -262,15 +263,6 @@ export default Vue.extend({
       }
 
       &-code {
-        --color-text: #E1E4E8;
-        --color-comment: var(--color-text-secondary);
-        --color-token: #F97583;
-        --color-class: #79B8FF;
-        --color-string: #9ECBFF;
-        --color-method: #B392F0;
-        --color-object: #FFAB70;
-        --color-highlighted-line-bg: #c63a5423;
-
         --padding: 4px;
         --line-height: 21px;
 
@@ -280,37 +272,37 @@ export default Vue.extend({
         font-family: var(--font-mono);
         font-size: 12.8px;
         line-height: var(--line-height);
-        color: var(--color-text);
+        color: var(--color-code-text);
         font-weight: 400;
         font-variant-numeric: tabular-nums;
         position: relative;
 
         .token {
-          color: var(--color-token);
+          color: var(--color-code-token);
         }
 
         .string {
-          color: var(--color-string);
+          color: var(--color-code-string);
         }
 
         .method {
-          color: var(--color-method);
+          color: var(--color-code-method);
         }
 
         .comment {
-          color: var(--color-comment);
+          color: var(--color-code-comment);
         }
 
         .highlighted-line {
-          background: var(--color-highlighted-line-bg);
+          background: var(--color-code-highlighted-line-bg);
         }
 
         .object {
-          color: var(--color-object);
+          color: var(--color-code-object);
         }
 
         .class {
-          color: var(--color-class);
+          color: var(--color-code-class);
         }
 
         &-lines {
@@ -336,7 +328,7 @@ export default Vue.extend({
           display: block;
           width: 100%;
           height: var(--line-height);
-          background: var(--color-highlighted-line-bg);
+          background: var(--color-code-highlighted-line-bg);
           position: absolute;
           top: calc(var(--padding) + var(--line-height) * 5);
         }
