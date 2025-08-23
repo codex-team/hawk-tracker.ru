@@ -41,7 +41,7 @@
             <FeatureMembership />
           </div>
           <div class="features__cell">
-            Исправлено Игорировать В избранное
+            <FeatureMarks />
           </div>
 
           <div class="features__cell">

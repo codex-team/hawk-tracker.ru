@@ -28,6 +28,15 @@
         Team
       </div>
       <div class="team__list">
+        <div class="team__list-contextmenu">
+          <span class="team__list-contextmenu-corner" />
+          <div class="team__list-contextmenu-item">
+            Grant admin
+          </div>
+          <div class="team__list-contextmenu-item">
+            Remove
+          </div>
+        </div>
         <div
           v-for="member in team"
           :key="member.email"
@@ -37,6 +46,7 @@
             v-if="member.id"
             :user="member.id"
             :size="16"
+            class="team__list-item-ava"
           />
           <img
             v-else
@@ -170,12 +180,15 @@ export default Vue.extend({
     flex-direction: column;
     font-size: 13px;
     line-height: 16px;
+    margin-right: 120px;
+    position: relative;
+    letter-spacing: 0.15px;
 
     &-item {
       display: flex;
       align-items: center;
-
       gap: 10px;
+      max-width: 100%;
 
       &-body {
         padding: 10px 0;
@@ -183,14 +196,22 @@ export default Vue.extend({
         display: flex;
         align-items: center;
         gap: 6px;
+        white-space: nowrap;
       }
 
       &:not(:last-child) &-body{
         border-bottom: 1px solid #31333A;
       }
 
+      &-ava {
+        flex-shrink: 0;
+      }
+
       &-name {
         color: var(--hawk-text-primary);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
       }
 
       &-notice {
@@ -208,6 +229,62 @@ export default Vue.extend({
 
       &-role + &-actions {
         margin-left: 12px;
+      }
+    }
+
+    &-contextmenu {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) translateX(calc(100% + 20px));
+
+      background: linear-gradient(180deg, #434343 0%, #1B1A1A 100%);
+      box-shadow: 0px 19px 33px #000000;
+      border-radius: 10px;
+      padding: 4px 12px;
+      min-width: 100px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 1px;
+        right: 1px;
+        bottom: 1px;
+        left: 1px;
+        border-radius: 9px;
+        background: #090909;
+        z-index: -1;
+      }
+
+      &-item {
+        padding: 8px 0;
+        font-size: 11px;
+        line-height: 13px;
+        color: var(--color-text-secondary);
+
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--color-separator);
+        }
+      }
+
+      &-corner {
+        position: absolute;
+        top: 50%;
+        right: calc(100%-6.2px);
+        transform: translateY(-50%) rotate(45deg);
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(180deg, rgb(53,53,53) 0%, rgb(42,42,42) 100%);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -1px;
+          right: -1px;
+          left: 1px;
+          bottom: 1px;
+          background: #090909;
+        }
       }
     }
   }

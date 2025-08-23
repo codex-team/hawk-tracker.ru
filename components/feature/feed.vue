@@ -52,18 +52,16 @@
           >
             <div class="p-feed__item-left">
               <div class="p-feed__item-left-icon">
-                <img
+                <IconStar
                   v-if="event.isStared"
                   class="svg-icon"
-                  src="~/assets/svg/star.svg"
                   aria-hidden="true"
-                >
-                <img
+                />
+                <IconCheck
                   v-else-if="event.isResolved"
                   class="svg-icon"
-                  src="~/assets/svg/check-circle.svg"
                   aria-hidden="true"
-                >
+                />
                 <IconDot v-else />
               </div>
 
