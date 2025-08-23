@@ -2,7 +2,7 @@
   <div class="block-inner-container">
     <div class="block-content-container">
       <div class="features">
-        <!-- <div class="features__row">
+        <div class="features__row">
           <div class="features__cell">
             <FeatureTelemetry />
           </div>
@@ -34,7 +34,7 @@
           <div class="features__cell">
             <FeatureReleases />
           </div>
-        </div> -->
+        </div>
 
         <div class="features__row features__row--grid-context features__row--grid-context--right-bottom-wide">
           <div class="features__cell">
@@ -45,7 +45,7 @@
           </div>
 
           <div class="features__cell">
-            Назначайте ответственных
+            <FeatureAssignee />
           </div>
         </div>
       </div>

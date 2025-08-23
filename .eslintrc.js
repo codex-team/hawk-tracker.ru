@@ -12,5 +12,6 @@ module.exports = {
   rules: {
     'jsdoc/require-returns': 'off',
     'no-irregular-whitespace': 'off',
+    'import/named': 'off',
   },
 };
