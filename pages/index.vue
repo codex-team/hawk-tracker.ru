@@ -1,6 +1,6 @@
 <template>
   <div class="landing">
-    <!-- <div class="landing__head">
+    <div class="landing__head">
       <div class="landing__head-content">
         <h1 class="landing__head-title">
           Мониторинг ошибок в ПО
@@ -33,20 +33,39 @@
           alt="Изображение интерфейса Хоук"
         >
       </div>
-    </div> -->
+    </div>
 
-    <!-- <transition name="fade">
+    <transition name="fade">
       <Contact
         v-show="isContactUsFormShown"
         :mail="mail"
         @update:mail="updateMail"
         @close="isContactUsFormShown = false;"
       />
-    </transition> -->
+    </transition>
 
     <LandingSection>
       <template #icon>
-        <div class="features-title-picture">
+        <div class="security-title-picture" aria-hidden="true">
+          <img src="~/assets/images/check-secure.png">
+        </div>
+      </template>
+      <template #title>
+        <span class="gradient-text gradient-text--yellow">
+          Безопасный и надежный
+        </span>
+      </template>
+      <template #description>
+        Позволяет не зависеть от зарубежных сервисов
+      </template>
+      <template #content>
+        <Security />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
+      <template #icon>
+        <div class="features-title-picture" aria-hidden="true">
           <img src="~/assets/images/check-features.png" alt="Хоук обладает всей необходимой функциональностью для мониторинга ошибок в ПО">
         </div>
       </template>
@@ -67,7 +86,7 @@
 
     <LandingSection>
       <template #icon>
-        <div class="integrations-title-picture">
+        <div class="integrations-title-picture" aria-hidden="true">
           <img src="~/assets/images/check-integrations.png" alt="Хоук на замену Sentry">
         </div>
       </template>
@@ -151,7 +170,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Features from '~/components/features.vue';
 import { Feature } from '~/types/feature';
 
 export default Vue.extend({
@@ -535,7 +553,8 @@ export default Vue.extend({
 }
 
 .integrations-title-picture,
-.features-title-picture {
+.features-title-picture,
+.security-title-picture {
   position: relative;
 
   img {
@@ -562,6 +581,12 @@ export default Vue.extend({
   }
 }
 
+.security-title-picture {
+  &::before {
+    background: radial-gradient(50% 50% at 50% 50%, #FFDC8C, transparent);
+  }
+}
+
 .gradient-text {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -578,6 +603,10 @@ export default Vue.extend({
 
   &--grey {
     background-image: linear-gradient(90deg, #ffffff 0%, #838383 100%);
+  }
+
+  &--yellow {
+    background-image: linear-gradient(90deg, #FFFAEB 32%, #ffffff 100%);
   }
 }
 

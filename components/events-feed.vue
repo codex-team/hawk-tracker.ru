@@ -66,7 +66,7 @@
             v-for="user in event.viewedBy"
             :key="user"
             :user="user"
-            size="12"
+            :size="12"
             class="viewed-by-user"
           />
         </div>
@@ -75,7 +75,7 @@
           <UserAva
             v-if="event.assignee"
             :user="event.assignee"
-            size="18"
+            :size="18"
           />
           <IconUserPlus v-else />
         </div>

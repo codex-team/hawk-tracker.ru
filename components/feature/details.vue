@@ -90,7 +90,7 @@ export default Vue.extend({
 @import '~/assets/styles/variables.pcss';
 
 .feature-details {
-  padding: 26px;
+  padding: var(--layout-paddings-grid);
 
   .feature-title {
     margin-bottom: 25px;

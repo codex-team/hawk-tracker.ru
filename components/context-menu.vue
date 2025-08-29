@@ -23,7 +23,7 @@
       <UserAva
         v-if="item.userAva"
         :user="item.userAva"
-        size="16"
+        :size="16"
       />
       {{ item.label }}
     </div>

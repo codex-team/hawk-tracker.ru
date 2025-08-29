@@ -35,9 +35,13 @@ export default Vue.extend({
 
 <style lang="pcss">
 .feature-title {
+  --gap: 12px;
+  --title-size: 20px;
+  --desc-max-width: auto;
+
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--gap);
 
   &--centered {
     align-items: center;
@@ -45,7 +49,7 @@ export default Vue.extend({
   }
 
   h2 {
-    font-size: 20px;
+    font-size: var(--title-size);
     line-height: 1.2;
     font-weight: bold;
     color: var(--color-text-main);
@@ -55,6 +59,7 @@ export default Vue.extend({
     font-size: 14px;
     color: var(--color-text-secondary);
     line-height: 20px;
+    max-width: var(--desc-max-width);
   }
 }
 </style>
