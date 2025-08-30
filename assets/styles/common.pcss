@@ -24,13 +24,43 @@ html {
   margin: 0;
 }
 
+/**
+ * App content max size (1520px)
+ */
 .block-inner-container {
   width: 100%;
   max-width: var(--layout-block-inner-container-width);
   margin: 0 auto;
   padding: 0 var(--layout-paddings-horisontal);
+
+  /** tmp styles begin*/
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: var(--layout-paddings-horisontal);
+    background: rgba(255, 94, 94, 0.12);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+  /** tmp styles end*/
 }
 
+
+/**
+ * Center column max size (1024px)
+ */
 .block-content-container {
   width: 100%;
   max-width: var(--layout-content-container-width);

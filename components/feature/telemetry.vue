@@ -18,23 +18,55 @@
 </script>
 
 <style lang="pcss">
+@import url('@/assets/styles/variables.pcss');
+
 .feature-telemetry {
   --padding: var(--layout-paddings-horisontal);
   --image-width: 370px;
   --image-height: 267px;
+  --padding-block-start: 53px;
 
-  padding: 53px calc(var(--image-width) + 10px) var(--padding) var(--padding);
+  @media (--screen-small) {
+    --image-width: 330px;
+    --image-height: 235px;
+  }
+
+  @media (--screen-mobile) {
+    --image-width: 100%;
+    --image-height: auto;
+    --padding-block-start: 20px;
+  }
+
+  padding: var(--padding-block-start) calc(var(--image-width) + 10px) var(--padding) var(--padding);
   position: relative;
   height: var(--image-height);
   box-sizing: content-box;
   display: flex;
   align-items: flex-end;
 
+  @media (--screen-small) {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (--screen-mobile) {
+    align-items: flex-start;
+    padding: var(--padding-block-start) var(--padding) 0;
+    flex-direction: column;
+    gap: 30px;
+    height: auto;
+  }
+
   &__image-wrapper {
     position: absolute;
     bottom: 0;
     right: 0;
     border-radius: 7px 0 0 0;
+
+    @media (--screen-mobile) {
+      position: relative;
+      border-radius: 7px 7px 0 0;
+    }
 
     &::before {
       content: '';
@@ -47,6 +79,10 @@
       background: linear-gradient(129deg, #3b3f4b, #3e3e43);
 
       border-radius: 7px 0 0 0;
+
+      @media (--screen-mobile) {
+        border-radius: 7px 7px 0 0;
+      }
     }
   }
 
@@ -62,6 +98,8 @@
       z-index: 2;
       position: relative;
       border-radius: 7px 0 0 0;
+      vertical-align: bottom;
+
     }
   }
 }

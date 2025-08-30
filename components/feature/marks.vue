@@ -48,6 +48,15 @@ export default Vue.extend({
   justify-content: space-around;
   height: 100%;
   background: linear-gradient(180deg, #090909 0%, #0B0B0B 100%), #000000;
+
+  @media (--screen-mobile) {
+    padding: var(--layout-paddings-horisontal);
+    height: auto;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: flex-start;
+  }
 }
 
 .feature-marks__button {
@@ -63,9 +72,23 @@ export default Vue.extend({
   font-weight: 500;
   white-space: nowrap;
 
-  .svg-icon {
+  @media (--screen-mobile) {
+    font-size: 11px;
+    padding: 5px 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  svg {
     width: 14px;
     height: 14px;
+    flex-shrink: 0;
+
+    @media (--screen-mobile) {
+      width: 10px;
+      height: 10px;
+    }
   }
 }
 </style>

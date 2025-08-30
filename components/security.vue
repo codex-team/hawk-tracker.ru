@@ -78,6 +78,10 @@ export default Vue.extend({
   grid-template-columns: 420px 1fr;
   gap: var(--gap);
 
+  @media (--screen-mobile) {
+    grid-template-columns: 1fr;
+  }
+
   &__col {
     &--left {
       display: flex;
@@ -160,12 +164,20 @@ export default Vue.extend({
     &--fz,
     &--edo {
       padding-block: 45px;
+
+      @media (--screen-mobile) {
+        padding-block: var(--layout-paddings-grid);
+      }
     }
 
     &--fz,
     &--edo,
     &--developer {
       padding-inline: 45px;
+
+      @media (--screen-mobile) {
+        padding-inline: var(--layout-paddings-grid);
+      }
     }
 
     &--developer {

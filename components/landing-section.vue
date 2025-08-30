@@ -6,11 +6,13 @@
     >
       <slot name="icon" />
     </div>
-    <div class="landing-section__title">
-      <slot name="title" />
-    </div>
-    <div class="landing-section__description">
-      <slot name="description" />
+    <div class="block-inner-container">
+      <div class="landing-section__title">
+        <slot name="title" />
+      </div>
+      <div class="landing-section__description">
+        <slot name="description" />
+      </div>
     </div>
     <div class="landing-section__content">
       <slot name="content" />
@@ -26,19 +28,30 @@ export default Vue.extend({
 </script>
 
 <style>
+@import url('@/assets/styles/variables.pcss');
 .landing-section {
+  --title-font-size: 40px;
+  --description-font-size: 22px;
+  --padding-block: 180px;
+
+  @media (--screen-mobile) {
+    --title-font-size: 30px;
+    --description-font-size: 18px;
+    --padding-block: 100px;
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 180px 0;
+  padding-block: var(--padding-block);
 
   &__icon {
     margin-bottom: 29px;
   }
 
   &__title {
-    font-size: 40px;
+    font-size: var(--title-font-size);
     font-weight: 600;
     line-height: 1.2em;
     color: var(--color-text-main);
@@ -47,7 +60,7 @@ export default Vue.extend({
   }
 
   &__description {
-    font-size: 22px;
+    font-size: var(--description-font-size);
     line-height: 1.27em;
     color: var(--color-text-secondary);
     margin-bottom: 50px;

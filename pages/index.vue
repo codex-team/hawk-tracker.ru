@@ -3,10 +3,10 @@
     <div class="landing__head">
       <div class="landing__head-content">
         <h1 class="landing__head-title">
-          Мониторинг ошибок в ПО
+          Мониторинг ошибок в ПО
         </h1>
         <div class="landing__head-subtitle">
-          с серверами в России и открытым исходным кодом
+          с серверами в России и открытым исходным кодом
         </div>
         <div class="landing__head-buttons">
           <Button
@@ -14,7 +14,7 @@
             size="medium"
             link="https://garage.hawk.so/sign-up?from=landing-top"
           >
-            Начать улучшать ПО
+            Начать улучшать ПО
           </Button>
           <Button
             type="secondary"
@@ -29,11 +29,23 @@
         <img
           class="landing__head-picture"
           src="~/assets/images/project-overview.png"
-          title="Хоук — российский трекер ошибок"
+          title="Хоук — российский трекер ошибок"
           alt="Изображение интерфейса Хоук"
         >
       </div>
     </div>
+
+    <LandingSection>
+      <template #title>
+        Проверено продуктами
+      </template>
+      <template #description>
+        Более 1400 проектов используют Хоук
+      </template>
+      <template #content>
+        <UsedBy />
+      </template>
+    </LandingSection>
 
     <transition name="fade">
       <Contact
@@ -52,11 +64,11 @@
       </template>
       <template #title>
         <span class="gradient-text gradient-text--yellow">
-          Безопасный и надежный
+          Безопасный и надежный
         </span>
       </template>
       <template #description>
-        Позволяет не зависеть от зарубежных сервисов
+        Позволяет не зависеть от зарубежных сервисов
       </template>
       <template #content>
         <Security />
@@ -76,7 +88,7 @@
       </template>
       <template #description>
         <span class="gradient-text gradient-text--grey">
-          Все, что нужно для мониторинга ошибок
+          Все, что нужно для мониторинга ошибок
         </span>
       </template>
       <template #content>
@@ -96,7 +108,7 @@
         </span>
       </template>
       <template #description>
-        Подключение за 5 минут
+        Подключение за 5 минут
       </template>
       <template #content>
         <Integrations />
@@ -111,59 +123,15 @@
         Замена Sentry
       </template>
       <template #description>
-        Миграция в одну строку
+        Миграция в одну строку
       </template>
       <template #content>
         <SentryCode />
       </template>
     </LandingSection>
 
-    <LandingSection>
-      <template #title>
-        Проверено продуктами
-      </template>
-      <template #description>
-        Более 1400 проектов используют Хоук
-      </template>
-      <template #content>
-        <div class="used-by">
-          <img src="~/assets/svg/used-by/ofd.svg" alt="Платформа ОФД">
-          <img src="~/assets/svg/used-by/rocket.svg" alt="Рокетбанк">
-          <img src="~/assets/svg/used-by/befree.svg" alt="Befree">
-          <img src="~/assets/svg/used-by/slogy.svg" alt="Слоджи">
-          <img src="~/assets/svg/used-by/vc.svg" alt="vc.ru">
-          <img src="~/assets/svg/used-by/wazzup.svg" alt="Wazzup">
-          <img src="~/assets/svg/used-by/dtf.svg" alt="DTF">
-          <img src="~/assets/svg/used-by/stworka.svg" alt="Stworka">
-        </div>
-      </template>
-    </LandingSection>
-
-    <div class="section section--with-gradient">
-      <div class="section__content">
-        <h2 class="section__title">
-          Возможности
-        </h2>
-        <features :features="features" />
-      </div>
-    </div>
-    <div class="content-blocks">
-      <gridInfo />
-
-      <div class="how-to-start">
-        <h3>Начните сейчас</h3>
-        <div class="how-to-start__text">
-          <a href="https://garage.hawk.so/sign-up?from=landing-text" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
-        </div>
-        <div class="how-to-start__link">
-          Начало работы с Хоуком
-          <a href="https://codex.so/hawk-getting-started" target="_blank">https://codex.so/hawk-getting-started</a>
-        </div>
-      </div>
-
-      <a style="margin: 25px auto" href="https://garage.hawk.so/sign-up?from=landing-bottom" class="landing__content-head-button">
-        Зарегистрироваться
-      </a>
+    <div class="block-content-container">
+      <StartNow />
     </div>
   </div>
 </template>
@@ -466,12 +434,13 @@ export default Vue.extend({
   &__head {
     background: linear-gradient(180deg, #121213 0%, #0B0911 100%);
     border-radius: 22px;
-    margin: 30px;
+    margin: var(--layout-paddings-appshell);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 0 var(--layout-paddings-appshell);
 
     &-content {
       display: flex;
@@ -537,6 +506,7 @@ export default Vue.extend({
       border-radius: 7px 7px 0 0;
       display: block;
       z-index: 2;
+      width: 100%;
     }
 
     &-buttons {
@@ -608,13 +578,6 @@ export default Vue.extend({
   &--yellow {
     background-image: linear-gradient(90deg, #FFFAEB 32%, #ffffff 100%);
   }
-}
-
-.used-by {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  justify-content: center;
 }
 
 .content-blocks {

@@ -82,6 +82,11 @@ const { isVisible, elementRef } = useIntersectionObserver({
   transform: translateY(50px) scaleX(0.8);
   will-change: transform, opacity;
 
+  @media (--screen-small) {
+    margin-top: 20px;
+    margin-left: -10px;
+  }
+
   &--visible {
     animation: messageSlideIn 0.4s cubic-bezier(.25,1.3,.86,1.07) forwards;
   }
@@ -98,6 +103,11 @@ const { isVisible, elementRef } = useIntersectionObserver({
     align-items: center;
     justify-content: center;
     background-color: #595D6F;
+
+    @media (--screen-mobile) {
+      width: 30px;
+      height: 30px;
+    }
 
     img {
       width: 66%;
@@ -153,6 +163,15 @@ const { isVisible, elementRef } = useIntersectionObserver({
     padding: 3px 6px;
     border-radius: 4px;
     margin: 4px 0;
+
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   &__link {

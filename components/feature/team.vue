@@ -61,12 +61,14 @@
               (Invatation sent)
             </span>
 
-            <span v-if="member.isAdmin" class="team__list-item-role">
-              Admin
-            </span>
+            <div class="team__list-item-body-right">
+              <span v-if="member.isAdmin" class="team__list-item-role">
+                Admin
+              </span>
 
-            <div class="team__list-item-actions">
-              <IconDots />
+              <div class="team__list-item-actions">
+                <IconDots />
+              </div>
             </div>
           </div>
         </div>
@@ -134,8 +136,21 @@ export default Vue.extend({
 
   .contextmenu {
     top: 50%;
-    right: 0;
+    right: -20px;
     transform: translateY(-50%) translateX(calc(100% + 20px));
+
+    @media (--screen-mobile) {
+      right: -5px;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    &__corner {
+      @media (--screen-mobile) {
+        left: calc(100% - 6.2px);
+        right: auto;
+        transform: rotate(225deg);
+      }
+    }
   }
 }
 
@@ -183,15 +198,20 @@ export default Vue.extend({
     flex-direction: column;
     font-size: 13px;
     line-height: 16px;
-    margin-right: 120px;
     position: relative;
     letter-spacing: 0.15px;
+    margin-right: 140px;
+
+    @media (--screen-mobile) {
+      margin-right: var(--layout-paddings-horisontal);
+    }
 
     &-item {
       display: flex;
       align-items: center;
       gap: 10px;
       max-width: 100%;
+      flex-basis: 100%;
 
       &-body {
         padding: 10px 0;
@@ -200,6 +220,16 @@ export default Vue.extend({
         align-items: center;
         gap: 6px;
         white-space: nowrap;
+        flex-basis: 100%;
+        flex-shrink: 0;
+        overflow: hidden;
+
+        &-right {
+          margin-left: auto;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
       }
 
       &:not(:last-child) &-body{
@@ -226,13 +256,6 @@ export default Vue.extend({
         margin-left: auto;
       }
 
-      &-actions {
-        margin-left: auto;
-      }
-
-      &-role + &-actions {
-        margin-left: 12px;
-      }
     }
   }
 }

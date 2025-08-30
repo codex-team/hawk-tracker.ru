@@ -119,9 +119,14 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+@import url('@/assets/styles/variables.pcss');
 .events-feed {
   --item-height: 40px;
   color: var(--hawk-text-secondary);
+
+  @media (--screen-mobile) {
+    --item-height: 36px;
+  }
 }
 /* Animation keyframes for simple fade-in */
 @keyframes itemFadeIn {
@@ -164,6 +169,10 @@ export default Vue.extend({
   height: var(--item-height);
   transition: top 0.3s ease-out;
 
+  @media (--screen-mobile) {
+    padding: 5px 8px;
+  }
+
   /* Simple fade-in animation for new items */
   animation: itemFadeIn 0.35s ease-out forwards;
 
@@ -184,6 +193,10 @@ export default Vue.extend({
       width: 18px;
       display: flex;
       justify-content: center;
+
+      @media (--screen-mobile) {
+        width: 12px;
+      }
     }
   }
 
@@ -193,16 +206,28 @@ export default Vue.extend({
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600;
+
+    @media (--screen-mobile) {
+      font-size: 12px;
+    }
   }
 
   &-right {
     margin-left: auto;
     gap: 8px;
 
+    @media (--screen-mobile) {
+      gap: 2px;
+    }
+
     &-icon {
       width: 18px;
       display: flex;
       justify-content: center;
+
+      @media (--screen-mobile) {
+        transform: scale(0.8);
+      }
     }
   }
 
@@ -223,12 +248,20 @@ export default Vue.extend({
     line-height: 1em;
     text-align: center;
     width: 36px;
+
+    @media (--screen-mobile) {
+      display: none;
+    }
   }
 
   &-badge-wrapper {
     min-width: 96px;
     display: flex;
     justify-content: flex-start;
+
+    @media (--screen-mobile) {
+      min-width: 60px;
+    }
   }
 
   &-badge {
@@ -243,6 +276,13 @@ export default Vue.extend({
     font-size: 10.2px;
     line-height: 1em;
 
+    @media (--screen-mobile) {
+      font-size: 8px;
+      padding: 2px 3px;
+      gap: 4px;
+      border-radius: 4px;
+    }
+
     &--new {
       background-color: var(--hawk-color-signal);
       color: var(--hawk-text-primary);
@@ -255,6 +295,15 @@ export default Vue.extend({
       font-weight: 500;
       font-size: 10.1px;
       opacity: 0.7;
+
+      @media (--screen-mobile) {
+        font-size: 8px;
+        gap: 2px;
+
+        svg {
+          width: 6px;
+        }
+      }
     }
   }
 }

@@ -269,6 +269,7 @@ export default Vue.extend({
 </script>
 
 <style>
+@import url('@/assets/styles/variables.pcss');
 .feature-feed {
   --padding: var(--layout-paddings-horisontal);
 
@@ -306,6 +307,10 @@ export default Vue.extend({
   margin-top: 50px;
   --item-height: 40px;
 
+  @media (--screen-mobile) {
+    margin: 20px 0 0;
+  }
+
   &__tabs {
     display: flex;
     justify-content: space-between;
@@ -331,6 +336,16 @@ export default Vue.extend({
         background-color: var(--hawk-color-bg-secondary);
         color: var(--hawk-text-primary);
       }
+
+      @media (--screen-mobile) {
+        font-size: 11px;
+
+        &:last-of-type,
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+          display: none;
+        }
+      }
     }
   }
 
@@ -353,6 +368,15 @@ export default Vue.extend({
         linear-gradient(to bottom, #080809, #1C1F2C);
       background-origin: border-box;
       background-clip: padding-box, border-box;
+
+    @media (--screen-mobile) {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+
+    svg:last-of-type {
+      margin-left: auto;
+    }
   }
 
   &__day {

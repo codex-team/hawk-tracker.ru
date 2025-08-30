@@ -38,7 +38,7 @@
 
         <div class="features__row features__row--grid-context features__row--grid-context--right-bottom-wide">
           <div class="features__cell">
-            <FeatureMembership />
+            <FeatureTeam />
           </div>
           <div class="features__cell">
             <FeatureMarks />
@@ -60,7 +60,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 @import url('@/assets/styles/variables.pcss');
 
 .features {
@@ -77,6 +77,10 @@ export default Vue.extend({
     gap: var(--gap);
     width: 100%;
 
+    @media (--screen-mobile) {
+      flex-direction: column;
+    }
+
     &--grid-context {
       display: grid;
       grid-template-areas:
@@ -88,8 +92,20 @@ export default Vue.extend({
       align-items: stretch;
       min-height: 40px;
 
+      @media (--screen-mobile) {
+        grid-template-areas:
+          'left'
+          'right-top'
+          'right-bottom';
+        grid-template-columns: 1fr;
+      }
+
       &--right-bottom-wide {
         grid-template-rows: 1fr 80%;
+
+        @media (--screen-mobile) {
+          grid-template-rows: auto auto auto;
+        }
       }
 
       & > .features__cell {

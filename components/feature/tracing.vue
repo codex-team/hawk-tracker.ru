@@ -44,7 +44,7 @@
               <div class="f-trace__content-item-code-lines">
                 <div
                   v-for="(line, index) in item.code.split('\n')"
-                  :key="line"
+                  :key="`line-${index}`"
                 >
                   {{ parseInt(item.line.split(':')[0], 10) + index - item.code.split('\n').length / 2 }}
                 </div>
@@ -169,7 +169,7 @@ export default Vue.extend({
   }
 
   .feature-title__description {
-    color: #C1B1B1
+    /* color: #C1B1B1 */
   }
 
    &::after {
@@ -180,7 +180,8 @@ export default Vue.extend({
     display: block;
     width: 100%;
     height: 20%;
-    background: linear-gradient(180deg, #71778900 0%, #020303 100%);
+    background: linear-gradient(180deg, #00000000 0%, #000000 100%);
+    /* background: linear-gradient(180deg, #71778900 0%, #020303 100%); */
   }
 }
 
@@ -243,6 +244,10 @@ export default Vue.extend({
         font-size: 13.2px;
         line-height: 18px;
 
+        @media (--screen-mobile) {
+          font-size: 12px;
+        }
+
         &-title {
           color: var(--hawk-text-primary);
         }
@@ -251,6 +256,10 @@ export default Vue.extend({
           font-size: 12px;
           line-height: 18px;
           color: var(--hawk-text-secondary);
+
+          @media (--screen-mobile) {
+            font-size: 10px;
+          }
 
           &-line {
             margin-left: 12px;
@@ -265,12 +274,20 @@ export default Vue.extend({
       &-code {
         --padding: 4px;
         --line-height: 21px;
+        --font-size: 12.8px;
+
+        @media (--screen-mobile) {
+          --font-size: 10px;
+          --line-height: 18px;
+          overflow: hidden;
+          max-width: 100%;
+        }
 
         background: rgba(0, 0, 0, 0.34);
         border-radius: 10px;
         margin-top: 5px;
         font-family: var(--font-mono);
-        font-size: 12.8px;
+        font-size: var(--font-size);
         line-height: var(--line-height);
         color: var(--color-code-text);
         font-weight: 400;
@@ -316,6 +333,10 @@ export default Vue.extend({
           color: var(--hawk-text-secondary);
           font-family: var(--font-mono);
           padding: var(--padding) 6px;
+
+          @media (--screen-mobile) {
+            font-size: 8px;
+          }
         }
 
         pre {
@@ -356,6 +377,12 @@ export default Vue.extend({
           font-weight: 500;
           font-family: var(--font-mono);
           font-variant-numeric: tabular-nums;
+
+          @media (--screen-mobile) {
+            left: auto;
+            right: 10px;
+            font-size: 8px;
+          }
         }
 
         &-tooltip {

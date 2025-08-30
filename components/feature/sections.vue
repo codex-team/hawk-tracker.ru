@@ -77,7 +77,9 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="postcss">
+<style lang="pcss">
+@import url('@/assets/styles/variables.pcss');
+
 .feature-sections {
   display: flex;
   flex-direction: column;
@@ -119,6 +121,11 @@ export default Vue.extend({
       border-radius: 3px;
       padding: 6px 10px;
 
+      @media (--screen-mobile) {
+        gap: 10px;
+        font-size: 9px;
+      }
+
       &:first-of-type {
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
@@ -138,6 +145,9 @@ export default Vue.extend({
       &-value {
         color: var(--hawk-text-primary);
         font-family: var(--font-mono);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
         &-component {
           color: var(--color-code-added-line-text);

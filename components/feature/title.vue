@@ -34,10 +34,15 @@ export default Vue.extend({
 </script>
 
 <style lang="pcss">
+@import url('@/assets/styles/variables.pcss');
 .feature-title {
   --gap: 12px;
   --title-size: 20px;
   --desc-max-width: auto;
+
+  @media (--screen-mobile) {
+    --gap: 8px;
+  }
 
   display: flex;
   flex-direction: column;

@@ -82,6 +82,7 @@ export default Vue.extend({
 </script>
 
 <style>
+@import url('@/assets/styles/variables.pcss');
 .f-json {
   display: flex;
   flex-direction: column;
@@ -90,10 +91,18 @@ export default Vue.extend({
   padding: 6px;
   border-radius: 3px;
 
+  @media (--screen-mobile) {
+    padding: 4px;
+  }
+
   &__key {
     display: flex;
     gap: 4px;
     margin-left: 16px;
+
+    @media (--screen-mobile) {
+      margin-left: 8px;
+    }
 
     &-name {
       color: var(--color-code-token);

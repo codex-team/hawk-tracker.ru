@@ -36,7 +36,7 @@ Sentry.<span class="sentry-code__method">init</span>({
 
   font-size: 13.2px;
   line-height: 1.45em;
-  color: var(--color-text);
+  color: var(--color-text-main);
   font-family: var(--font-mono);
 
   @media (--screen-mobile) {

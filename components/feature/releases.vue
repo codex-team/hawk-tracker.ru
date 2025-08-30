@@ -15,7 +15,7 @@
           </div>
           <div class="f-commits__commit-author">
             <UserAva :user="3" :size="16" />
-            taly@cdx.so committed a day ago
+            taly@cdx.so committed a day ago
           </div>
         </div>
         <div class="f-commits__commit-right">
@@ -106,6 +106,10 @@ export default Vue.extend({
       font-size: 14px;
       color: var(--hawk-text-primary);
       font-weight: bold;
+
+      @media (--screen-mobile) {
+        font-size: 12px;
+      }
     }
 
     &-author {
@@ -115,6 +119,14 @@ export default Vue.extend({
       display: flex;
       align-items: center;
       gap: 6px;
+
+      @media (--screen-mobile) {
+        font-size: 11px;
+
+        img {
+          transform: scale(0.8);
+        }
+      }
     }
 
     &-hash {
@@ -125,6 +137,10 @@ export default Vue.extend({
       background-color: #171920;
       padding: 3px 6px;
       border-radius: 5px;
+
+      @media (--screen-mobile) {
+        display: none;
+      }
     }
   }
 

@@ -94,6 +94,10 @@ export default Vue.extend({
   flex-direction: column;
   background: linear-gradient(180deg, #0F0F13 0%, #0C0C0C 100%), #000000;
 
+  @media (--screen-mobile) {
+    height: 340px;
+  }
+
   &__events {
     position: relative;
   }
@@ -102,6 +106,12 @@ export default Vue.extend({
     top: calc(100% - 40px);
     right: 23px;
     min-width: 190px;
+
+    @media (--screen-mobile) {
+      top: calc(100% - 30px);
+      right: 11px;
+      min-width: auto;
+    }
   }
 }
 </style>
