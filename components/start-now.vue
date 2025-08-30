@@ -13,7 +13,7 @@
     <Button
       type="primary"
       size="medium"
-      link="https://garage.hawk.so/sign-up?from=landing-bottom"
+      :link="startNowButton()"
     >
       Начать улучшать ПО
     </Button>
@@ -21,7 +21,12 @@
 </template>
 
 <script lang="ts" setup>
+import { useUTM } from '~/composables/useUTM';
 
+/**
+ * Start now button URL with UTM tracking
+ */
+const startNowButton = useUTM('https://garage.hawk.so/sign-up', 'landing-bottom');
 </script>
 
 <style>

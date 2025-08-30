@@ -12,14 +12,14 @@
           <Button
             type="primary"
             size="medium"
-            link="https://garage.hawk.so/sign-up?from=landing-top"
+            :link="landingSignupButton()"
           >
             Начать улучшать ПО
           </Button>
           <Button
             type="secondary"
             size="medium"
-            link="https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c?from=landing-top"
+            :link="landingDemoButton()"
           >
             Посмотреть демо
           </Button>
@@ -139,6 +139,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Feature } from '~/types/feature';
+import { useUTM } from '~/composables/useUTM';
 
 export default Vue.extend({
   jsonld() {
@@ -363,6 +364,20 @@ export default Vue.extend({
       ],
     };
   },
+  computed: {
+    /**
+     * Landing page signup button URL with UTM tracking
+     */
+    landingSignupButton() {
+      return useUTM('https://garage.hawk.so/sign-up', 'landing-top');
+    },
+    /**
+     * Landing page demo button URL with UTM tracking
+     */
+    landingDemoButton() {
+      return useUTM('https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c', 'landing-demo');
+    },
+  },
   mounted() {
     window.addEventListener('scroll', () => {
       this.scroll = window.scrollY;
@@ -372,7 +387,7 @@ export default Vue.extend({
 
     setTimeout(() => {
       this.isContactUsFormShown = true;
-    }, 2500);
+    }, 500);
   },
   methods: {
     /**
@@ -442,12 +457,20 @@ export default Vue.extend({
     overflow: hidden;
     padding: 0 var(--layout-paddings-appshell);
 
+    @media (--screen-mobile) {
+      margin: var(--layout-paddings-appshell) 0 0;
+    }
+
     &-content {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 90px 0 60px;
+
+      @media (--screen-mobile) {
+        padding: 60px 0 30px;
+      }
     }
 
     &-title {
@@ -487,6 +510,10 @@ export default Vue.extend({
       justify-content: center;
       align-items: center;
       margin-bottom: -80px;
+
+      @media (--screen-mobile) {
+        margin-bottom: -20px;
+      }
 
       &::before {
         content: '';

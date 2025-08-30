@@ -170,7 +170,7 @@ export default Vue.extend({
   transition: top 0.3s ease-out;
 
   @media (--screen-mobile) {
-    padding: 5px 8px;
+    padding: 0 10px;
   }
 
   /* Simple fade-in animation for new items */
@@ -277,7 +277,7 @@ export default Vue.extend({
     line-height: 1em;
 
     @media (--screen-mobile) {
-      font-size: 8px;
+      font-size: 8.5px;
       padding: 2px 3px;
       gap: 4px;
       border-radius: 4px;
@@ -297,11 +297,11 @@ export default Vue.extend({
       opacity: 0.7;
 
       @media (--screen-mobile) {
-        font-size: 8px;
+        font-size: 7.23px;
         gap: 2px;
 
         svg {
-          width: 6px;
+          width: 5px;
         }
       }
     }

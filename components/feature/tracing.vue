@@ -188,6 +188,10 @@ export default Vue.extend({
 .f-trace {
   margin-top: 40px;
 
+  @media (--screen-mobile) {
+    margin-top: 20px;
+  }
+
   /* Initial state for animation */
   opacity: 0;
   will-change: transform, opacity;
@@ -361,6 +365,10 @@ export default Vue.extend({
 
           @media (--screen-retina) {
             left: 252.5px;
+          }
+
+          @media (--screen-mobile) {
+            left: 197.5px;
           }
         }
 

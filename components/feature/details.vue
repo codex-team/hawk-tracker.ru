@@ -10,21 +10,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 import vueSvg from '~/assets/svg/vue.svg';
 
 export default Vue.extend({
-  setup() {
-    const { isVisible, elementRef } = useIntersectionObserver({
-      threshold: 0.3,
-      rootMargin: '0px 0px -50px 0px',
-    });
-
-    return {
-      isVisible,
-      elementRef,
-    };
-  },
   data() {
     return {
       sections: [

@@ -53,7 +53,7 @@
     align-items: flex-start;
     padding: var(--padding-block-start) var(--padding) 0;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     height: auto;
   }
 
@@ -99,6 +99,11 @@
       position: relative;
       border-radius: 7px 0 0 0;
       vertical-align: bottom;
+
+      @media (--screen-mobile) {
+        width: 100%;
+        border-radius: 7px 7px 0 0;
+      }
 
     }
   }

@@ -26,13 +26,13 @@
         <span class="site-header__menu-toggler" @click="toggleMobileMenu">
           Menu
         </span>
-        <a
-          href="https://garage.hawk.so/sign-up?from=landing-header"
-          class="site-header__menu-logo desktop-only"
+        <Button
+          type="primary"
+          size="small"
+          :link="headerSignupButton()"
         >
-          <IconSignIn />
           Начать
-        </a>
+        </Button>
         <div class="site-header__menu-separator desktop-only" />
         <div class="site-header__menu-social desktop-only">
           <a href="https://github.com/codex-team?q=hawk&type=all&language=&sort=">
@@ -49,6 +49,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { useUTM } from '~/composables/useUTM';
 
 export default Vue.extend({
   data() {
@@ -58,6 +59,14 @@ export default Vue.extend({
        */
       mobileMenuShowed: false,
     };
+  },
+  computed: {
+    /**
+     * Signup button URL with UTM tracking
+     */
+    headerSignupButton() {
+      return useUTM('https://garage.hawk.so/sign-up', 'header-signup');
+    },
   },
   methods: {
     /**
@@ -181,6 +190,7 @@ export default Vue.extend({
         gap: 20px;
 
         a {
+          display: inline-flex;
           color: var(--color-text-secondary);
 
           &:hover {

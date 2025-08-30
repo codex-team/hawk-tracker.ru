@@ -192,7 +192,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="postcss">
+<style lang="pcss">
 @import url('@/assets/styles/variables.pcss');
 .footer {
   color: var(--color-text-third);

@@ -87,11 +87,20 @@ export default Vue.extend({
     padding: 11px 16px;
     border-radius: 10px;
 
+    @media (--screen-mobile) {
+      gap: 0;
+      padding: 8px 10px;
+    }
+
     &-left {
       display: flex;
       flex-direction: column;
       gap: 5px;
       flex: 1;
+
+      @media (--screen-mobile) {
+        gap: 2px;
+      }
     }
 
     &-right {

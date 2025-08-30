@@ -1,5 +1,11 @@
 <template>
-  <div class="feature-sections">
+  <div
+    ref="elementRef"
+    class="feature-sections"
+    :class="{
+      'feature-sections--visible': isVisible,
+    }"
+  >
     <div
       v-for="section in sections"
       :key="section.label"
@@ -15,9 +21,12 @@
       </div>
       <div class="feature-sections__section-rows">
         <div
-          v-for="row in section.rows"
+          v-for="(row, rowIndex) in section.rows"
           :key="row.title"
           class="feature-sections__section-row"
+          :style="{
+            '--animation-delay': `${rowIndex * 0.2}s`
+          }"
         >
           <div class="feature-sections__section-row-title">
             {{ row.title }}
@@ -48,6 +57,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
+import { useIntersectionObserver } from '~/composables/useIntersectionObserver';
 
 export default Vue.extend({
   name: 'FeatureSections',
@@ -65,6 +75,17 @@ export default Vue.extend({
       required: true,
     },
   },
+  setup() {
+    const { isVisible, elementRef } = useIntersectionObserver({
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px',
+    });
+
+    return {
+      isVisible,
+      elementRef,
+    };
+  },
   methods: {
     getUserValue(value: string | Record<string, any>): {email: string, id: number} | null {
       if (typeof value === 'object') {
@@ -80,10 +101,37 @@ export default Vue.extend({
 <style lang="pcss">
 @import url('@/assets/styles/variables.pcss');
 
+/* Animation keyframes for row enter animation */
+@keyframes rowSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .feature-sections {
   display: flex;
   flex-direction: column;
   gap: 22px;
+
+  /* Initial state for animation */
+  opacity: 0;
+  will-change: transform, opacity;
+
+  /* Animation when visible */
+  &--visible {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+
+    .feature-sections__section-row {
+      animation: rowSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation-delay: var(--animation-delay);
+    }
+  }
 
   &__section {
     display: flex;
@@ -120,6 +168,10 @@ export default Vue.extend({
       background: var(--hawk-color-bg-main);
       border-radius: 3px;
       padding: 6px 10px;
+
+      /* Initial state for row animation */
+      opacity: 0;
+      will-change: transform, opacity;
 
       @media (--screen-mobile) {
         gap: 10px;
