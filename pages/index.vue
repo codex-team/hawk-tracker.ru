@@ -126,7 +126,7 @@
         Доступные цены
       </template>
       <template #description>
-        Пользуйтесь бесплатно или от 99 ₽
+        Пользуйтесь бесплатно или от 99 ₽
       </template>
       <template #content>
         <div class="block-inner-container">
@@ -134,26 +134,26 @@
             <div class="prices">
               <div class="prices__item">
                 <FeatureTitle
-                  title="Бесплатно для стартапов"
-                  description="До 1000 ивентов в месяц"
+                  title="Бесплатно для стартапов"
+                  description="До 1000 ивентов в месяц"
                 />
               </div>
               <div class="prices__item">
                 <FeatureTitle
-                  title="От 99 ₽ в месяц"
-                  description="скидки крупным клиентам"
+                  title="От 99 ₽ в месяц"
+                  description="скидки крупным клиентам"
                 />
               </div>
               <div class="prices__item">
                 <FeatureTitle
                   title="Оплата картой"
-                  description="Все банки РФ + СБП"
+                  description="Все банки РФ + СБП"
                 />
               </div>
               <div class="prices__item">
                 <FeatureTitle
-                  title="Оплата по счету"
-                  description="По реквизитам компании"
+                  title="Оплата по счету"
+                  description="По реквизитам компании"
                 />
               </div>
             </div>

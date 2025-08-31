@@ -18,6 +18,9 @@
       </a>
       <div class="site-header__right">
         <div class="site-header__menu">
+          <span class="site-header__menu-cross" @click="toggleMobileMenu">
+            <IconCross />
+          </span>
           <a href="https://codex.so/hawk-overview">О проекте</a>
           <a href="https://docs.hawk-tracker.ru/">Документация</a>
           <a href="/pricing.pdf" target="_blank">Цены</a>
@@ -30,6 +33,7 @@
           type="primary"
           size="small"
           :link="headerSignupButton()"
+          class="desktop-only"
         >
           Начать
         </Button>
@@ -143,6 +147,20 @@ export default Vue.extend({
 
       @media (--screen-mobile) {
         display: none;
+      }
+
+      &-cross {
+        float: right;
+        width: 40px;
+        height: 40px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+
+        @media (--screen-mobile) {
+          display: flex;
+        }
       }
 
       ^&--menu-showed & {
