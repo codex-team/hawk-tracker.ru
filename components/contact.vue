@@ -115,7 +115,10 @@ export default Vue.extend({
         this.isExpanded = false;
         console.log('closeClick', this.isExpanded);
       });
-      // this.$emit('close');
+      /**
+       * We just collaps it back when close button is clicked
+       * If you'll need to hide the panel at all, use this.$emit('close');
+       */
     },
   },
 
