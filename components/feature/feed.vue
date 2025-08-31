@@ -2,7 +2,7 @@
   <div class="feature-feed">
     <div class="feature-feed__container">
       <FeatureTitle
-        title="Отслеживайте ошибки"
+        title="Просмотр событий"
         description="Работает поиск, сортировка по количеству или затронутым пользователям, добавление в избранное, пометки исправления"
       />
 
