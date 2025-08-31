@@ -1,101 +1,190 @@
 <template>
-  <div class="yard">
-    <div class="landing">
-      <illustration class="landing__illustration" />
-      <div class="landing__content">
-        <div class="landing__content-head">
-          <div class="landing__content-head-left">
-            <h1>
-              Трекер ошибок
-            </h1>
+  <div class="landing">
+    <div class="landing__head">
+      <div class="landing__head-content">
+        <h1 class="landing__head-title">
+          Мониторинг ошибок в ПО
+        </h1>
+        <div class="landing__head-subtitle">
+          с серверами в России и открытым исходным кодом
+        </div>
+        <div class="landing__head-buttons">
+          <Button
+            type="primary"
+            size="medium"
+            :link="landingSignupButton()"
+          >
+            Начать улучшать ПО
+          </Button>
+          <Button
+            type="secondary"
+            size="medium"
+            :link="landingDemoButton()"
+          >
+            Посмотреть демо
+          </Button>
+        </div>
+      </div>
+      <div class="landing__head-picture-container">
+        <img
+          class="landing__head-picture"
+          src="~/assets/images/project-overview.png"
+          title="Хоук — российский трекер ошибок"
+          alt="Изображение интерфейса Хоук"
+        >
+      </div>
+    </div>
 
-            <div class="description">
-              Хоук улучшает качество продукта.<br>
-              Он отлавливает ошибки в ПО и помогает их устранить.<br>
-              Локализованная версия позволяет не зависеть от зарубежных сервисов.<br>
+    <LandingSection>
+      <template #title>
+        Проверено продуктами
+      </template>
+      <template #description>
+        Более 1400 проектов используют Хоук
+      </template>
+      <template #content>
+        <UsedBy />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
+      <template #icon>
+        <div class="security-title-picture" aria-hidden="true">
+          <img src="~/assets/images/check-secure.png">
+        </div>
+      </template>
+      <template #title>
+        <span class="gradient-text gradient-text--yellow">
+          Безопасный и надежный
+        </span>
+      </template>
+      <template #description>
+        Позволяет не зависеть от зарубежных сервисов
+      </template>
+      <template #content>
+        <Security />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
+      <template #icon>
+        <div class="features-title-picture" aria-hidden="true">
+          <img src="~/assets/images/check-features.png" alt="Хоук обладает всей необходимой функциональностью для мониторинга ошибок в ПО">
+        </div>
+      </template>
+      <template #title>
+        <span class="gradient-text gradient-text--pink">
+          Мощная функциональность
+        </span>
+      </template>
+      <template #description>
+        <span class="gradient-text gradient-text--grey">
+          Все, что нужно для мониторинга ошибок
+        </span>
+      </template>
+      <template #content>
+        <Features />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
+      <template #icon>
+        <div class="integrations-title-picture" aria-hidden="true">
+          <img src="~/assets/images/check-integrations.png" alt="Хоук на замену Sentry">
+        </div>
+      </template>
+      <template #title>
+        <span class="gradient-text gradient-text--purple">
+          Множество интеграций
+        </span>
+      </template>
+      <template #description>
+        Подключение за 5 минут
+      </template>
+      <template #content>
+        <Integrations />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
+      <template #icon>
+        <img class="sentry-to-hawk-picture" src="~/assets/images/sentry-to-hawk.png" alt="Хоук на замену Sentry">
+      </template>
+      <template #title>
+        Замена Sentry
+      </template>
+      <template #description>
+        Миграция в одну строку
+      </template>
+      <template #content>
+        <SentryCode />
+      </template>
+    </LandingSection>
+
+    <LandingSection>
+      <template #title>
+        Доступные цены
+      </template>
+      <template #description>
+        Пользуйтесь бесплатно или от 99 ₽
+      </template>
+      <template #content>
+        <div class="block-inner-container">
+          <div class="block-content-container">
+            <div class="prices">
+              <div class="prices__item">
+                <FeatureTitle
+                  title="Бесплатно для стартапов"
+                  description="До 1000 ивентов в месяц"
+                />
+              </div>
+              <div class="prices__item">
+                <FeatureTitle
+                  title="От 99 ₽ в месяц"
+                  description="скидки крупным клиентам"
+                />
+              </div>
+              <div class="prices__item">
+                <FeatureTitle
+                  title="Оплата картой"
+                  description="Все банки РФ + СБП"
+                />
+              </div>
+              <div class="prices__item">
+                <FeatureTitle
+                  title="Оплата по счету"
+                  description="По реквизитам компании"
+                />
+              </div>
             </div>
-            <div class="landing__content-head-left-advantages">
-              <h2 class="landing__content-head-left-advantages-text">
-                Сервера в России
-              </h2>
-              <h2 class="landing__content-head-left-advantages-text">
-                Оплата по счету юр. лица
-              </h2>
-              <h2 class="landing__content-head-left-advantages-text">
-                Помощь с интеграцией
-              </h2>
-            </div>
-            <a href="https://garage.hawk.so/sign-up?from=landing-top" class="landing__content-head-button">
-              Зарегистрироваться
-            </a>
           </div>
         </div>
-        <div class="landing__content-preview" :style="`transform: translateY(${Math.max(0, 150 - scroll * 0.35)}px)`">
-          <img src="~/assets/images/hawk-desktop.png" title="Hawk — российский трекер ошибок" alt="Изображение супер-современного интерфейса Hawk'a">
-        </div>
-      </div>
-      <div class="contact-container">
-        <Contact
-          :mail="mail"
-          title="Свяжитесь с нами"
-          title-size="small"
-          style="margin-top: 115px;
-                padding: 0 30px;"
-          @update:mail="updateMail"
-        />
-      </div>
-    </div>
-    <div class="section section--with-gradient">
-      <div class="section__content">
-        <h2 class="section__title">
-          Возможности
-        </h2>
-        <features :features="features" />
-      </div>
-    </div>
-    <div class="content-blocks">
-      <gridInfo />
-      <div class="contact-container, contact-container__backgrounded">
-        <Contact
-          input-active
-          title="Подключайтесь"
-          title-size="medium"
-          :mail="mail"
-          @update:mail="updateMail"
-        />
-      </div>
+      </template>
+    </LandingSection>
 
-      <div class="how-to-start">
-        <h3>Начните сейчас</h3>
-        <div class="how-to-start__text">
-          <a href="https://garage.hawk.so/sign-up?from=landing-text" target="_blank">Зарегистрируйтесь</a> → Создайте Воркспейс → Создайте проект и получите токен → Подключите SDK в свой код
-        </div>
-        <div class="how-to-start__link">
-          Начало работы с Хоуком
-          <a href="https://codex.so/hawk-getting-started" target="_blank">https://codex.so/hawk-getting-started</a>
-        </div>
+    <div class="block-inner-container">
+      <div class="block-content-container">
+        <StartNow />
       </div>
-
-      <a style="margin: 25px auto" href="https://garage.hawk.so/sign-up?from=landing-bottom" class="landing__content-head-button">
-        Зарегистрироваться
-      </a>
     </div>
+
+    <transition name="fade">
+      <Contact
+        v-show="isContactUsFormShown"
+        :mail="mail"
+        @update:mail="updateMail"
+        @close="isContactUsFormShown = false;"
+      />
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import Illustration from '~/assets/svg/flying-hawk.svg?inline';
-import Contact from '~/components/contact.vue';
-import gridInfo from '~/components/grid-info.vue';
-import { Feature } from '~/components/features.vue';
+import { Feature } from '~/types/feature';
+import { useUTM } from '~/composables/useUTM';
 
 export default Vue.extend({
-  components: {
-    Illustration,
-    Contact,
-    gridInfo,
-  },
   jsonld() {
     return {
       '@context': 'https://schema.org',
@@ -168,6 +257,12 @@ export default Vue.extend({
     features: Feature[],
 
     /**
+     * Contact us form appears after few seconds
+     * and can be closed by user
+     */
+    isContactUsFormShown: boolean,
+
+    /**
      * Scroll Y position
      */
     scroll: number,
@@ -216,6 +311,12 @@ export default Vue.extend({
           pictureComponent: 'features-be-notified',
         },
       ],
+
+      /**
+       * Contact us form appears after few seconds
+       * and can be closed by user
+       */
+      isContactUsFormShown: false,
 
       /**
        * Scroll Y position
@@ -306,12 +407,30 @@ export default Vue.extend({
       ],
     };
   },
+  computed: {
+    /**
+     * Landing page signup button URL with UTM tracking
+     */
+    landingSignupButton() {
+      return useUTM('https://garage.hawk.so/sign-up', 'landing-top');
+    },
+    /**
+     * Landing page demo button URL with UTM tracking
+     */
+    landingDemoButton() {
+      return useUTM('https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c', 'landing-demo');
+    },
+  },
   mounted() {
     window.addEventListener('scroll', () => {
       this.scroll = window.scrollY;
     }, { passive: true });
 
     this.updateDownloadButtomWithPlatform();
+
+    setTimeout(() => {
+      this.isContactUsFormShown = true;
+    }, 500);
   },
   methods: {
     /**
@@ -369,360 +488,194 @@ export default Vue.extend({
 @custom-media --screen-tall (min-height: 1200px);
 @custom-media --screen-middle (max-width: 1170px);
 
-.extra-indent_15px {
-  margin-top: 15px;
-}
-
-.yard {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-}
-
 .landing {
-  font-family: "Roboto-Regular", Helvetica;
-  position: relative;
-  background: #080E20;
-  align-items: center;
+  &__head {
+    background: linear-gradient(180deg, #121213 0%, #0B0911 100%);
+    border-radius: 22px;
+    margin: var(--layout-paddings-appshell);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 var(--layout-paddings-appshell);
 
-  &__illustration {
-    width: 100%;
-    position: absolute;
-  }
-
-  &__content {
-    position: relative;
-    flex-shrink: 0;
-
-    &-head {
-      margin: 120px auto 0px;
-      padding: 0 var(--layout-paddings-horisontal);
-      justify-content: center;
-      display: flex;
-
-      @media (--screen-tall) {
-        margin: 170px auto;
-      }
-
-      @media (--screen-middle) {
-        padding: 0 40px;
-        margin: 130px auto 0;
-      }
-
-      @media (--screen-small) {
-        margin: 80px auto -50px;
-      }
-
-      @media (--screen-small) {
-        flex-direction: column;
-      }
-
-      &-left {
-        padding-right: 50px;
-        gap: 18px;
-        padding-bottom: 13px;
-        position: relative;
-        align-items: center;
-
-        @media (--screen-mobile) {
-          padding-right: 0;
-        }
-
-        h1 {
-          color: #F2F6FF;
-          font-size: 89px;
-          font-weight: 700;
-          margin: 0 0 22px 0;
-
-          @media (--screen-small) {
-            font-size: 60px;
-            margin-bottom: 16px;
-          }
-
-          @media (--screen-mobile) {
-            font-size: 30px;
-          }
-        }
-
-        &-advantages {
-          display: flex;
-          justify-content: space-between;
-          color: #F2F6FF;
-          font-weight: 700;
-          width: 100%;
-          line-height: 30px;
-          gap: 40px;
-          font-size: 22px;
-          margin-top: 13px;
-
-          @media (--screen-middle) {
-            gap: 20px;
-          }
-
-          @media (--screen-mobile) {
-            display: grid;
-            font-weight: 600;
-            font-size: 16px;
-            gap: 0px;
-          }
-
-          &-text {
-            flex: 1 0 auto;
-            letter-spacing: 0;
-            white-space: nowrap;
-            margin: 0;
-            font-size: inherit;
-          }
-        }
-
-        .description {
-          font-weight: 500;
-          color: #dbe6ffce;
-          letter-spacing: 0.33px;
-          font-size: 20px;
-          line-height: 30px;
-          overflow-wrap: normal;
-          width: 100%;
-          padding-bottom: 13px;
-
-          @media (--screen-small) {
-            font-size: 18px;
-            line-height: 26px;
-          }
-
-          @media (--screen-mobile) {
-            font-size: 14px;
-            line-height: 22px;
-          }
-        }
-      }
-
-      &-button {
-        font-size: 18px;
-        font-weight: 600;
-        margin-top: 40px;
-        display: inline-flex;
-        padding: 14px 20px;
-        background-image: linear-gradient(90deg, #5584F5 0%, #3761E0 100%);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 7px;
-        box-shadow: 0 12px 44px 0 rgba(0,0,0,0.10), inset 0 0 0 1px rgba(255,255,255,0.06);
-        transition: all 0.3s ease;
-
-        &:hover {
-          transform: translateY(-2px);
-        }
-
-        @media (--screen-mobile) {
-          margin-top: 20px;
-          font-size: 16px;
-          padding: 12px 18px;
-        }
-      }
-
-      &-right {
-        margin-left: auto;
-
-        .button {
-          display: flex;
-        }
-
-        @media (--screen-small) {
-          margin-left: 0;
-          margin-top: 30px;
-
-          .button {
-            display: inline-flex;
-            margin-right: 20px;
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02)
-          }
-        }
-
-        @media (max-width: 560px) {
-          .button {
-            display: inline-flex;
-            width: 240px;
-          }
-        }
-
-        .button:not(:last-of-type) {
-          margin-bottom: 20px;
-        }
-      }
+    @media (--screen-mobile) {
+      margin: var(--layout-paddings-appshell) 0 0;
     }
 
-    &-preview {
-      position: relative;
-      box-shadow: 0 12px 44px 0 rgba(0,0,0,0.50), inset 0 0 0 1px rgba(255,255,255,0.06);
-      border-radius: 7px;
-      overflow: hidden;
-      width: calc(var(--layout-main-col-width) * 1.1);
-      margin: 0 auto;
-      z-index: 1;
-      will-change: transform;
-
-      img {
-        width: 100%;
-        vertical-align: bottom;
-        background-image: linear-gradient(90deg, #1E202A 0%, #1E202A 4%, #242732 5%, #242732 24%, #2F3341 25%, #2F3341 100%);
-      }
-
-      @media (--screen-middle) {
-        width: var(--layout-main-col-width);
-      }
-
-      @media (max-width: 1080px) {
-        width: calc(var(--layout-main-col-width) * 0.95);
-      }
-
-      @media (--screen-tall) {
-        transform: none !important;
-      }
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 90px 0 60px;
 
       @media (--screen-mobile) {
-        padding-top: 60px;
-        transform: none !important;
-        border-radius: 7px;
-        box-shadow: none;
-      }
-
-      @media (--screen-small) {
-        width: 90%;
+        padding: 60px 0 30px;
       }
     }
+
+    &-title {
+      font-size: 40px;
+      line-height: 48px;
+      font-weight: 800;
+      color: #F2F6FF;
+
+      font-size: 50px;
+      line-height: 59px;
+      background: linear-gradient(90deg, #CDD9FF 0%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+
+    }
+
+    &-subtitle {
+      margin-top: 10px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 147%;
+
+      background: linear-gradient(90deg, #9CA1FF 0%, #FFFFFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+
+    }
+
+    &-picture-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: -80px;
+
+      @media (--screen-mobile) {
+        margin-bottom: -20px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        background: linear-gradient(135deg, #43455E 0%, #38374A 100%);
+        border-radius: 9px 9px 2px 2px;
+        z-index: 1;
+      }
+    }
+
+    &-picture {
+      max-width: var(--layout-content-container-width);
+      border-radius: 7px 7px 0 0;
+      display: block;
+      z-index: 2;
+      width: 100%;
+    }
+
+    &-buttons {
+      display: flex;
+      gap: 20px;
+      padding-top: 30px;
+    }
+
   }
 }
 
-.contact-container {
-  width: 100%;
-  height: fit-content;
-
-  &__backgrounded {
-    border-radius: 8px;
-    margin-top: 16px;
-    padding: 40px 30px;
-    background-color: #242936;
-  }
+.sentry-to-hawk-picture {
+  height: 43px;
 }
 
-.content-blocks {
-  padding: 30px 40px;
-  display: inline-grid;
-  justify-content: center;
-
-  @media (--screen-mobile) {
-    padding: 20px 20px;
-  }
-}
-
-.section {
+.integrations-title-picture,
+.features-title-picture,
+.security-title-picture {
   position: relative;
-  padding-top: 100px;
 
-  @media (--screen-middle) {
-    padding-top: 70px;
+  img {
+    height: 43px;
   }
 
-  @media (--screen-mobile) {
-    padding-top: 40px;
-  }
-
-  padding-bottom: 80px;
-
-  &--with-gradient::before {
+  &::before {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    transform: scaleY(-1);
-    background-image: linear-gradient(180deg, rgba(24,27,35,0.00) 0%, #080E20 100%);
-    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(50% 50% at 50% 50%, #D7C9FF, transparent);
+    width: 120px;
+    height: 120px;
     z-index: -1;
+    opacity: 0.15;
+  }
+}
+
+.features-title-picture {
+  &::before {
+    background: radial-gradient(50% 50% at 50% 50%, #FFBCEF, transparent);
+  }
+}
+
+.security-title-picture {
+  &::before {
+    background: radial-gradient(50% 50% at 50% 50%, #FFDC8C, transparent);
+  }
+}
+
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  &--purple {
+    background-image: linear-gradient(90deg, #CDD9FF 0%, #989CE6 100%);
   }
 
-  &__content {
-    max-width: var(--layout-main-col-width);
-    margin: 0 auto;
-    padding: 0 var(--layout-paddings-horisontal);
+  &--pink {
+    background-image: linear-gradient(90deg, #ffffff 0%, #F7AEFF 100%);
   }
 
-  &__title {
-    font-weight: 800;
-    font-size: 70px;
-    color: #F2F6FF;
-    letter-spacing: 0;
-    margin-bottom: 50px;
-
-    @media (--screen-small) {
-      font-size: 50px;
-      margin-bottom: 30px;
-    }
-
-    @media (--screen-mobile) {
-      font-size: 30px;
-      text-align: center;
-    }
+  &--grey {
+    background-image: linear-gradient(90deg, #ffffff 0%, #838383 100%);
   }
 
-  &--small {
-    text-align: center;
+  &--yellow {
+    background-image: linear-gradient(90deg, #FFFAEB 32%, #ffffff 100%);
+  }
+}
+
+.prices {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  @media (--screen-mobile) {
+    flex-direction: column;
   }
 
-  &--small &__title {
-    font-size: 37px;
-    margin-bottom: 30px;
+  &__item {
+    border: 1px solid var(--color-separator);
+    border-radius: 14px;
+    padding: var(--layout-paddings-horisontal);
 
-    @media (--screen-mobile) {
-      font-size: 26px;
-      margin-bottom: 10px;
+    .feature-title {
+      gap: 4px;
     }
   }
 }
 
-.how-to-start {
-  margin-top: 120px;
-  color: #929AAD;
-  text-align: center;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 
-  h3 {
-    font-size: 26px;
-    line-height: 22px;;
-    font-weight: 700;
-    color: #F2F6FF;
-  }
-
-  &__text {
-    margin-top: 26px;
-    font-size: 14px;
-    line-height: 1.45em;
-
-    a {
-      border-bottom: 1px solid rgba(187, 192, 255, 0.2);
-    }
-  }
-
-  &__link {
-    box-sizing: border-box;
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    padding: 15px 20px;
-    text-align: left;
-    gap: 2px;
-    color: #A9B7D7;
-    background: #15171F;
-    border: 1px solid rgba(187, 192, 255, 0.08);
-    border-radius: 14px;
-    margin: 26px auto 0;
-
-    a {
-      color: #5584F5;
-      text-decoration: none;
-    }
-  }
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

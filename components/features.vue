@@ -1,183 +1,146 @@
 <template>
-  <div class="features">
-    <div
-      v-for="(feature, i) in features"
-      :key="'feature:' + i"
-      class="features__item"
-    >
-      <div class="features__item-left">
-        <div class="features__item-left-content">
-          <h3 class="features__item-title">
-            {{ feature.title }}
-          </h3>
-          <div class="features__item-description">
-            {{ feature.description }}
+  <div class="block-inner-container">
+    <div class="block-content-container">
+      <div class="features">
+        <div class="features__row">
+          <div class="features__cell">
+            <FeatureTelemetry />
+          </div>
+          <div class="features__cell">
+            <FeatureAlerts />
           </div>
         </div>
-      </div>
-      <div class="features__item-right">
-        <div
-          v-if="feature.picture"
-          class="features__item-image"
-        >
-          <img
-            :src="require(`~/assets/images/${feature.picture}.png`)"
-            :style="feature.style || ''"
-          >
+
+        <div class="features__row">
+          <div class="features__cell features__cell--full">
+            <FeatureFeed />
+          </div>
         </div>
-        <component
-          :is="feature.pictureComponent"
-          v-else-if="feature.pictureComponent"
-        />
+
+        <div class="features__row">
+          <div class="features__cell features__cell--full">
+            <FeatureTracing />
+          </div>
+        </div>
+
+        <div class="features__row features__row--grid-context">
+          <div class="features__cell">
+            <FeatureDetails />
+          </div>
+          <div class="features__cell">
+            <FeatureCustomFields />
+          </div>
+
+          <div class="features__cell">
+            <FeatureReleases />
+          </div>
+        </div>
+
+        <div class="features__row features__row--grid-context features__row--grid-context--right-bottom-wide">
+          <div class="features__cell">
+            <FeatureTeam />
+          </div>
+          <div class="features__cell">
+            <FeatureMarks />
+          </div>
+
+          <div class="features__cell">
+            <FeatureAssignee />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
-import FeaturesBeNotified from './features-be-notified.vue';
-
-/**
- * Structure of a single feature
- */
-export interface Feature {
-  /**
-   * Feature name
-   */
-  title: string;
-
-  /**
-   * Short caption
-   */
-  description: string;
-
-  /**
-   * Image path
-   */
-  picture?: string;
-
-  /**
-   * Custom component name that should be used instead of picture
-   */
-  pictureComponent?: string;
-
-  /**
-   * Additional style overrides
-   */
-  style?: string | undefined;
-}
+import Vue from 'vue';
 
 export default Vue.extend({
-  components: {
-    FeaturesBeNotified,
-  },
-  props: {
-    /**
-     * List of features
-     */
-    features: {
-      type: Array as PropType<Feature[]>,
-      required: true,
-    },
-  },
 });
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 @import url('@/assets/styles/variables.pcss');
 
 .features {
-  &__item {
-    display: flex;
-    margin-bottom: 100px;
+  --gap: 20px;
 
-    @media (--screen-middle) {
-      margin-bottom: 70px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  width: 100%;
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gap);
+    width: 100%;
 
     @media (--screen-mobile) {
       flex-direction: column;
-      text-align: center;
-      margin-bottom: 40px;
     }
 
-    &-left {
-      width: 30%;
+    &--grid-context {
+      display: grid;
+      grid-template-areas:
+        'left right-top'
+        'left right-bottom';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--gap);
+      align-items: stretch;
+      min-height: 40px;
 
       @media (--screen-mobile) {
-        width: auto;
+        grid-template-areas:
+          'left'
+          'right-top'
+          'right-bottom';
+        grid-template-columns: 1fr;
       }
 
-      &-content {
-        position: sticky;
-        top: 0;
-      }
-    }
+      &--right-bottom-wide {
+        grid-template-rows: 1fr 80%;
 
-    &-right {
-      margin-left: auto;
-
-      @media (--screen-mobile) {
-        margin-left: 0;
-        margin-top: 20px;
-      }
-    }
-
-    &-title {
-      display: inline-block;
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--color-text-main);
-      line-height: 40px;
-      margin-bottom: 14px;
-      padding-top: 24px;
-      background-clip: text;
-      background-image: linear-gradient(90deg,#98c9ff,#d7eaff);
-      color: transparent;
-
-      @media (--screen-middle) {
-        line-height: 30px;
-        margin: 8px 0 21px;
+        @media (--screen-mobile) {
+          grid-template-rows: auto auto auto;
+        }
       }
 
-      @media (--screen-small) {
-        font-size: 24px;
-        margin-bottom: 7px;
-        padding-top: 10px;
+      & > .features__cell {
+        height: 100%;
+      }
+
+      & > .features__cell:nth-of-type(1) {
+        grid-area: left;
+      }
+
+      & > .features__cell:nth-of-type(2) {
+        grid-area: right-top;
+      }
+
+      & > .features__cell:nth-of-type(3) {
+        grid-area: right-bottom;
       }
     }
+  }
 
-    &-description {
-      font-size: 17px;
-      line-height: 24px;
-      color: var(--color-text-second);
+  &__cell {
+    background-color: var(--color-bg-third);
+    width: 100%;
+    border-radius: 14px;
+    border: 1px solid var(--color-separator-island);
+    color: var(--color-text-secondary);
+    overflow: hidden;
 
-      @media (--screen-small) {
-        font-size: 15px;
-        line-height: 24px
-      }
+    &:nth-of-type(2n) {
+      flex-basis: 62%;
     }
 
-    &-image {
-      width: var(--layout-features-column-width);
-      border-radius: 10px;
-      box-shadow: 0 2px 44px 0 rgba(0,0,0,0.50);
-
-      @media (--screen-small) {
-        width: 400px;
-      }
-
-      @media (--screen-mobile) {
-        width: 90%;
-        margin: 0 auto;
-      }
-
-      img {
-        width: 100%;
-        vertical-align: bottom;
-        border-radius: 12px;
-      }
+    &--full {
+      flex-basis: 100%;
+      border: 0;
     }
   }
 }

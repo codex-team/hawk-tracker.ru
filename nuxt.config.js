@@ -18,11 +18,11 @@ export default {
       },
       {
         name: 'msapplication-TileColor',
-        content: '#242732',
+        content: '#000000',
       },
       {
         name: 'theme-color',
-        content: '#242732',
+        content: '#000000',
       },
       {
         name: 'apple-mobile-web-app-capable',
@@ -53,11 +53,6 @@ export default {
         sizes: '32x32',
       },
       {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: 'https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap',
-      },
-      {
         rel: 'icon',
         href: '/favicon.ico',
         sizes: '32x32',
@@ -66,11 +61,28 @@ export default {
         rel: 'apple-touch-icon',
         href: '/apple-touch-icon.png',
       },
+      /* Font preloading to prevent font jumping */
+      {
+        rel: 'preload',
+        href: '/fonts/Inter/InterVariable.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: '/fonts/Inter/Inter-Regular.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous',
+      },
     ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    '@/static/fonts/Inter/inter.css',
+    '@/static/fonts/JetBrainsMono/jetbrainsmono.css',
     '@/assets/styles/variables',
     '@/assets/styles/common',
   ],
@@ -146,4 +158,9 @@ export default {
       },
     },
   },
+
+  // server: {
+  //   port: 3000,
+  //   host: '0.0.0.0',
+  // },
 };
