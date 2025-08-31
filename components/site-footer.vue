@@ -65,11 +65,11 @@ export default Vue.extend({
           links: [
             {
               title: 'Начало работы с Хоуком',
-              link: 'https://docs.hawk-tracker.ru/getting-started',
+              link: 'https://codex.so/hawk-getting-started',
             },
             {
               title: 'Как получить Интеграционный Токен',
-              link: 'https://docs.hawk-tracker.ru/integrat-token',
+              link: 'https://docs.hawk-tracker.ru/integratsionniy-token',
             },
             {
               title: 'Интеграция с JavaScript',
@@ -89,7 +89,7 @@ export default Vue.extend({
             },
             {
               title: 'Миграция с Sentry',
-              link: 'https://docs.hawk-tracker.ru/sentry-migration',
+              link: 'https://codex.so/sentry-migration',
             },
           ],
         },

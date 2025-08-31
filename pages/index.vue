@@ -130,8 +130,51 @@
       </template>
     </LandingSection>
 
-    <div class="block-content-container">
-      <StartNow />
+    <LandingSection>
+      <template #title>
+        Доступные цены
+      </template>
+      <template #description>
+        Пользуйтесь бесплатно или от 99 ₽
+      </template>
+      <template #content>
+        <div class="block-inner-container">
+          <div class="block-content-container">
+            <div class="prices">
+              <div class="prices__item">
+                <FeatureTitle
+                  title="Бесплатно для стартапов"
+                  description="До 1000 ивентов в месяц"
+                />
+              </div>
+              <div class="prices__item">
+                <FeatureTitle
+                  title="От 99 ₽ в месяц"
+                  description="скидки крупным клиентам"
+                />
+              </div>
+              <div class="prices__item">
+                <FeatureTitle
+                  title="Оплата картой"
+                  description="Все банки РФ + СБП"
+                />
+              </div>
+              <div class="prices__item">
+                <FeatureTitle
+                  title="Оплата по счету"
+                  description="По реквизитам компании"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </LandingSection>
+
+    <div class="block-inner-container">
+      <div class="block-content-container">
+        <StartNow />
+      </div>
     </div>
   </div>
 </template>
@@ -476,10 +519,9 @@ export default Vue.extend({
     &-title {
       font-size: 40px;
       line-height: 48px;
-      font-weight: 700;
+      font-weight: 800;
       color: #F2F6FF;
 
-      font-weight: 700;
       font-size: 50px;
       line-height: 59px;
       background: linear-gradient(90deg, #CDD9FF 0%, #FFFFFF 100%);
@@ -607,121 +649,22 @@ export default Vue.extend({
   }
 }
 
-.content-blocks {
-  padding: 30px 40px;
-  display: inline-grid;
-  justify-content: center;
+.prices {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 
   @media (--screen-mobile) {
-    padding: 20px 20px;
-  }
-}
-
-.section {
-  position: relative;
-  padding-top: 100px;
-
-  @media (--screen-middle) {
-    padding-top: 70px;
-  }
-
-  @media (--screen-mobile) {
-    padding-top: 40px;
-  }
-
-  padding-bottom: 80px;
-
-  &--with-gradient::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    transform: scaleY(-1);
-    background-image: linear-gradient(180deg, rgba(24,27,35,0.00) 0%, #080E20 100%);
-    height: 500px;
-    z-index: -1;
-  }
-
-  &__content {
-    max-width: var(--layout-block-inner-container-width);
-    margin: 0 auto;
-    padding: 0 var(--layout-paddings-horisontal);
-  }
-
-  &__title {
-    font-weight: 800;
-    font-size: 70px;
-    color: #F2F6FF;
-    letter-spacing: 0;
-    margin-bottom: 50px;
-
-    @media (--screen-small) {
-      font-size: 50px;
-      margin-bottom: 30px;
-    }
-
-    @media (--screen-mobile) {
-      font-size: 30px;
-      text-align: center;
-    }
-  }
-
-  &--small {
-    text-align: center;
-  }
-
-  &--small &__title {
-    font-size: 37px;
-    margin-bottom: 30px;
-
-    @media (--screen-mobile) {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-  }
-}
-
-.how-to-start {
-  margin-top: 120px;
-  color: #929AAD;
-  text-align: center;
-
-  h3 {
-    font-size: 26px;
-    line-height: 22px;;
-    font-weight: 700;
-    color: #F2F6FF;
-  }
-
-  &__text {
-    margin-top: 26px;
-    font-size: 14px;
-    line-height: 1.45em;
-
-    a {
-      border-bottom: 1px solid rgba(187, 192, 255, 0.2);
-    }
-  }
-
-  &__link {
-    box-sizing: border-box;
-    display: inline-flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
-    padding: 15px 20px;
-    text-align: left;
-    gap: 2px;
-    color: #A9B7D7;
-    background: #15171F;
-    border: 1px solid rgba(187, 192, 255, 0.08);
-    border-radius: 14px;
-    margin: 26px auto 0;
+  }
 
-    a {
-      color: #5584F5;
-      text-decoration: none;
+  &__item {
+    border: 1px solid var(--color-separator);
+    border-radius: 14px;
+    padding: var(--layout-paddings-horisontal);
+
+    .feature-title {
+      gap: 4px;
     }
   }
 }

@@ -128,7 +128,7 @@ export default Vue.extend({
 .contact-us {
   --width: 120px;
   --height: 120px;
-  --title-size: 14px;
+  --title-size: 13px;
   --title-align: center;
   --radius: 50%;
   --animation-speed: 0.3s;
@@ -183,7 +183,7 @@ export default Vue.extend({
     transition: font-size var(--animation-speed) ease, line-height var(--animation-speed) ease, transform var(--animation-speed) ease;
     will-change: font-size, line-height;
     margin-bottom: 16px;
-    transform: translateY(15px);
+    transform: translateY(17px);
   }
 
   &--expanded &__title {

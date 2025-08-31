@@ -19,7 +19,7 @@
       <div class="site-header__right">
         <div class="site-header__menu">
           <a href="https://codex.so/hawk-overview">О проекте</a>
-          <a href="https://docs.hawk.so/">Документация</a>
+          <a href="https://docs.hawk-tracker.ru/">Документация</a>
           <a href="/pricing.pdf" target="_blank">Цены</a>
         </div>
         <div class="site-header__menu-separator" />
