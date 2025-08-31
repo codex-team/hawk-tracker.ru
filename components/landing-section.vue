@@ -32,7 +32,7 @@ export default Vue.extend({
 .landing-section {
   --title-font-size: 40px;
   --description-font-size: 22px;
-  --padding-block: 180px;
+  --padding-block: 240px;
 
   @media (--screen-mobile) {
     --title-font-size: 30px;
@@ -71,5 +71,9 @@ export default Vue.extend({
     max-width: 100%;
     width: 100%;
   }
+}
+
+.landing-section + .landing-section {
+  padding-top: 0;
 }
 </style>

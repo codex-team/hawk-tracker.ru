@@ -47,15 +47,6 @@
       </template>
     </LandingSection>
 
-    <transition name="fade">
-      <Contact
-        v-show="isContactUsFormShown"
-        :mail="mail"
-        @update:mail="updateMail"
-        @close="isContactUsFormShown = false;"
-      />
-    </transition>
-
     <LandingSection>
       <template #icon>
         <div class="security-title-picture" aria-hidden="true">
@@ -176,6 +167,15 @@
         <StartNow />
       </div>
     </div>
+
+    <transition name="fade">
+      <Contact
+        v-show="isContactUsFormShown"
+        :mail="mail"
+        @update:mail="updateMail"
+        @close="isContactUsFormShown = false;"
+      />
+    </transition>
   </div>
 </template>
 
