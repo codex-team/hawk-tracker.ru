@@ -45,7 +45,7 @@
             </a>
             <a href="https://t.me/hawk_tracker" class="link-with-icon">
               <IconTelegram alt="Telegram logo" />
-              hawk-tracker
+              hawk_tracker
             </a>
           </div>
         </div>
