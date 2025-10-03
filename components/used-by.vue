@@ -3,7 +3,7 @@
     <div class="used-by">
       <img src="~/assets/svg/used-by/ofd.svg" alt="Платформа ОФД">
       <img src="~/assets/svg/used-by/rocket.svg" alt="Рокетбанк">
-      <img src="~/assets/svg/used-by/befree.svg" alt="Befree">
+      <img src="~/assets/svg/used-by/sovcombank.svg" alt="СОВКОМБАНК">
       <img src="~/assets/svg/used-by/slogy.svg" alt="Слоджи">
       <img src="~/assets/svg/used-by/vc.svg" alt="vc.ru">
       <img src="~/assets/svg/used-by/wazzup.svg" alt="Wazzup">
