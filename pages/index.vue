@@ -418,7 +418,7 @@ export default Vue.extend({
      * Landing page demo button URL with UTM tracking
      */
     landingDemoButton() {
-      return useUTM('https://garage.hawk.so/join/6e9fe41c8d6d59b272fda8c43c076ddcb571d3b5b09ad1e95e3a770b6358289c', 'landing-demo');
+      return useUTM('https://garage.hawk.so/?demo=1', 'landing-demo');
     },
   },
   mounted() {
