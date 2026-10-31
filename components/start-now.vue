@@ -41,7 +41,8 @@ const startNowButton = useUTM('https://garage.hawk.so/sign-up', 'landing-bottom'
 
   padding: 140px 0 100px;
   margin-bottom: 80px;
-  border-radius: 30px;
+  border-radius: var(--radius-3xl);
+  corner-shape: superellipse(1.3);
   border: 1px solid var(--color-separator);
 
   @media (--screen-mobile) {

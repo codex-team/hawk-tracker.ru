@@ -52,7 +52,7 @@ export default Vue.extend({
   --line-height: 140%;
   --letter-spacing: 0;
   --color: var(--color-button-primary-text);
-  --border-radius: 12px;
+  --border-radius: var(--radius-md);
 
   display: inline-block;
   text-align: center;
@@ -63,6 +63,7 @@ export default Vue.extend({
   color: var(--color);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
+  corner-shape: superellipse(1.4);
   padding: var(--padding);
   font-size: var(--font-size);
   font-weight: 500;
@@ -95,7 +96,7 @@ export default Vue.extend({
   --font-size: 18px;
   --line-height: 140%;
   --letter-spacing: 0.02em;
-  --border-radius: 14px;
+  --border-radius: var(--radius-lg);
 }
 
 .button--medium {
@@ -103,7 +104,7 @@ export default Vue.extend({
   --font-size: 14px;
   --line-height: 140%;
   --letter-spacing: 0.02em;
-  --border-radius: 12px;
+  --border-radius: var(--radius-md);
 }
 
 .button--small {
@@ -111,6 +112,6 @@ export default Vue.extend({
   --font-size: 14px;
   --line-height: 140%;
   --letter-spacing: 0.02em;
-  --border-radius: 10px;
+  --border-radius: var(--radius-sm);
 }
 </style>

@@ -103,7 +103,8 @@ export default Vue.extend({
 
   &__cell {
     width: 100%;
-    border-radius: 14px;
+    border-radius: var(--radius-lg);
+    corner-shape: superellipse(1.3);
     border: 1px solid var(--color-separator-island);
     color: var(--color-text-secondary);
     overflow: hidden;

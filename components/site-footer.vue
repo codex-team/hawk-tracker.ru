@@ -266,7 +266,8 @@ export default Vue.extend({
 
     display: flex;
     margin: 50px 0 20px;
-    border-radius: 14px;
+    border-radius: var(--radius-lg);
+    corner-shape: superellipse(1.3);
     padding: var(--padding);
     gap: 20px;
     background: var(--color-bg-secondary);
