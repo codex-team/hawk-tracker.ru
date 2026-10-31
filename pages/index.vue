@@ -168,8 +168,11 @@
       </div>
     </div>
 
+    <OnPremise @discuss="openContact" />
+
     <transition name="fade">
       <Contact
+        ref="contact"
         v-show="isContactUsFormShown"
         :mail="mail"
         @update:mail="updateMail"
@@ -457,6 +460,19 @@ export default Vue.extend({
     },
 
     /**
+     * Shows the contact panel expanded
+     */
+    openContact(): void {
+      this.isContactUsFormShown = true;
+
+      const contact = this.$refs.contact as Vue & { expand: () => void };
+
+      if (contact) {
+        contact.expand();
+      }
+    },
+
+    /**
      * Update label and href of the Download button
      * corresponding by user platform
      */
@@ -491,7 +507,8 @@ export default Vue.extend({
 .landing {
   &__head {
     background: linear-gradient(180deg, #121213 0%, #0B0911 100%);
-    border-radius: 22px;
+    border-radius: var(--radius-2xl);
+    corner-shape: superellipse(1.3);
     margin: var(--layout-paddings-appshell);
     display: flex;
     flex-direction: column;
@@ -660,7 +677,8 @@ export default Vue.extend({
 
   &__item {
     border: 1px solid var(--color-separator);
-    border-radius: 14px;
+    border-radius: var(--radius-lg);
+    corner-shape: superellipse(1.3);
     padding: var(--layout-paddings-horisontal);
 
     .feature-title {

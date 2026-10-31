@@ -36,6 +36,7 @@
       >
         <div class="frame">
           <input
+            ref="contactInput"
             required
             class="contact-us__input"
             :value="inputData"
@@ -109,6 +110,20 @@ export default Vue.extend({
           this.$emit('update:mail', this.inputData);
         })
         .catch(error => console.error('Error:', error));
+    },
+    /**
+     * Expands the contact panel and places the cursor in the contact field
+     */
+    expand(): void {
+      this.isExpanded = true;
+
+      this.$nextTick(() => {
+        const input = this.$refs.contactInput as HTMLInputElement | undefined;
+
+        if (input) {
+          input.focus();
+        }
+      });
     },
     closeClick(): void {
       requestAnimationFrame(() => {
