@@ -2,6 +2,14 @@
   <div class="landing">
     <div class="landing__head">
       <div class="landing__head-content">
+        <div class="landing__head-badge">
+          <span class="landing__head-badge-label">
+            Новое
+          </span>
+          <span class="landing__head-badge-text">
+            AI помощник, автофикс багов с Copilot, on-premise версия
+          </span>
+        </div>
         <h1 class="landing__head-title">
           Мониторинг ошибок в ПО
         </h1>
@@ -531,6 +539,44 @@ export default Vue.extend({
       @media (--screen-mobile) {
         padding: 60px 0 30px;
       }
+    }
+
+    &-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 100%;
+      margin-bottom: 20px;
+      padding: 6px 14px 6px 6px;
+      background: #1f1f1f;
+      border: 1px solid #2a2a2a;
+      border-radius: 36px;
+
+      @media (--screen-mobile) {
+        display: none;
+      }
+    }
+
+    &-badge-label {
+      flex-shrink: 0;
+      padding: 3px 7px;
+      background: var(--color-signal);
+      border-radius: 35px;
+      color: var(--color-button-primary-text);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 13px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    &-badge-text {
+      min-width: 0;
+      color: #8a8a8a;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
     }
 
     &-title {
