@@ -434,7 +434,8 @@ export default Vue.extend({
 
     background: #0A0A0A;
     border: 1px solid #1C1C1C;
-    border-radius: 16px;
+    border-radius: var(--radius-xl);
+    corner-shape: superellipse(1.3);
     display: flex;
     align-items: center;
     justify-content: center;

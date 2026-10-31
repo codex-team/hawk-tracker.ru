@@ -21,7 +21,8 @@ Sentry.<span class="sentry-code__method">init</span>({
   margin: 0 auto;
   background: var(--color-bg-secondary);
   padding: 20px;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.3);
   display: flex;
   flex-shrink: 0;
   overflow: auto;
