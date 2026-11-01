@@ -546,7 +546,7 @@ export default Vue.extend({
       align-items: center;
       gap: 8px;
       max-width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
       padding: 6px 14px 6px 6px;
       background: #1f1f1f;
       border: 1px solid #2a2a2a;

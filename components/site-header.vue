@@ -23,6 +23,10 @@
           </span>
           <a href="https://codex.so/hawk-overview">О проекте</a>
           <a href="https://docs.hawk-tracker.ru/">Документация</a>
+          <a
+            href="/#on-premise"
+            @click="mobileMenuShowed = false"
+          >On-premise</a>
           <a href="/pricing.pdf" target="_blank">Цены</a>
         </div>
         <div class="site-header__menu-separator" />

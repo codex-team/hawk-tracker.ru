@@ -1,6 +1,9 @@
 <template>
   <section class="on-premise">
-    <div class="on-premise__card">
+    <div
+      id="on-premise"
+      class="on-premise__card"
+    >
       <img
         class="on-premise__mark"
         src="@/assets/svg/on-premise-castle.svg"
@@ -90,6 +93,8 @@ export default Vue.extend({
   }
 
   &__card {
+    /* castle sits 35.5px above the card; keep it clear of the sticky header */
+    scroll-margin-top: calc(var(--layout-header-height) + 96px);
     position: relative;
     display: flex;
     flex-direction: column;
